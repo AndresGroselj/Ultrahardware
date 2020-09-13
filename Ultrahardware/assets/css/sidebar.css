@@ -1,0 +1,38 @@
+/* sidebar */
+
+#categorias {
+	background-color: #393e46;
+	padding: 5px 0px 0px 0px;
+	align-items: start;
+	min-height: 3rem;
+	/* padding-top: 5px; */
+}
+
+#categorias nav ul {
+	color: rgb(255, 255, 255);
+	margin-bottom: 5px;
+	margin-left: 30px;
+	padding-left: 0;
+}
+
+#categorias nav a {
+	color: white;
+}
+
+#categorias nav a[aria-expanded="true"] {
+	color: #32e0c4;
+}
+
+/* sidebar button */
+
+
+#categorias a.category-toggler{
+	color: #eeeeee;
+	font-size: 150%;
+	transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#categorias a.category-toggler[aria-expanded="true"] {
+	color: #32e0c4;
+	font-size: 180%;
+}

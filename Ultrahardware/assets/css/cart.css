@@ -1,0 +1,26 @@
+#cart-products{
+    margin-bottom: 1rem;
+}
+
+#cart-products .product-image{
+	height: 3.5rem;
+}
+
+#cart-products .card{
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+#cart-products .card div{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+#cart-products .card input[type="text"]{
+	width: 2.8rem;
+}
+
+#pagar{
+    padding: 1rem;
+    max-width: 15rem;
+}

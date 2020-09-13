@@ -1,0 +1,96 @@
+{% extends 'SidebarTemplate.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/sidebar.css'%}">
+{% endblock css %}
+
+{% block content %}
+    <!-- carrusel -->
+    <div id="promo" class="container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-interval="10000">
+                <img src="{% static 'img/promos/1.png' %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-interval="2000">
+                <img src="{% static 'img/promos/2.png' %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                <img src="{% static 'img/promos/3.png' %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                <img src="{% static 'img/promos/4.png' %}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            </div>
+    </div>
+    <!-- productos -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- BASE PRODUCT -->
+            <div class="card col-md-3 browse-result">
+                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Telefono</h5>
+                    <div class="discount"><span>$500.000</span> 50%</div>
+                    <h6>$250.000</h6>
+                </div>
+            </div>
+            <!-- PRODUCTS -->
+            
+            <div class="card col-md-3 browse-result">
+                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Telefono</h5>
+                    <h6>$500.000</h6>
+                </div>
+            </div>
+            <div class="card col-md-3 browse-result">
+                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Telefono</h5>
+                    <h6>$500.000</h6>
+                </div>
+            </div>
+            <div class="card col-md-3 browse-result">
+                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Telefono</h5>
+                    <h6>$500.000</h6>
+                </div>
+            </div>
+            <div class="card col-md-3 browse-result">
+                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Telefono</h5>
+                    <h6>$500.000</h6>
+                </div>
+            </div>
+            
+
+
+            <!-- DUMMIES -->
+            <div class="browse-dummy col-md-3">&nbsp;</div>
+            <div class="browse-dummy col-md-3">&nbsp;</div>
+            <div class="browse-dummy col-md-3">&nbsp;</div>
+            <div class="browse-dummy col-md-3">&nbsp;</div>
+            <div class="browse-dummy col-md-3">&nbsp;</div>
+            <!---->
+        </div>
+    </div>
+{% endblock content %}

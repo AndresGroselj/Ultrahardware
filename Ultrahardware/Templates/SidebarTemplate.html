@@ -1,0 +1,51 @@
+{% extends 'BaseTemplate.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/sidebar.css'%}">
+{% endblock css %}
+
+
+{% block wrapper %}
+    <!-- SIDEBAR -->
+        <div class="col-12 col-lg-3 col-xl-2" id="categorias">
+            <a class="category-toggler d-lg-none d-xl-none" type="button" data-toggle="collapse" data-target="#category-list" aria-controls="category-list" aria-expanded="false" aria-label="Toggle navigation">
+                <span>Categorias</span>
+            </a>
+            <nav class="d-xl-block d-lg-block collapse" id="category-list">
+                <ul class="navbar-nav mr-auto">
+                    <a href="#categoria-accesorios" data-toggle="collapse">Accesorios</a>
+                    <li id="categoria-accesorios" class="collapse">
+                        <ul>audifonos</ul>
+                        <ul>pendrives</ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-auto">
+                    <a href="#categoria-almacenamiento" data-toggle="collapse">Almacenamiento</a>
+                    <li id="categoria-almacenamiento" class="collapse">
+                        <ul>audifonos</ul>
+                        <ul>pendrives</ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-auto">
+                    <a href="#categoria-audiovideo" data-toggle="collapse">Audio y video</a>
+                    <li id="categoria-audiovideo" class="collapse">
+                        <ul>audifonos</ul>
+                        <ul>pendrives</ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-auto">
+                    <a href="#categoria-componentespc" data-toggle="collapse">Componentes PC</a>
+                    <li id="categoria-componentespc" class="collapse">
+                        <ul>audifonos</ul>
+                        <ul>pendrives</ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- content -->
+        <div class="col-12 col-lg-9 col-xl-10 nopadding" id="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+{% endblock wrapper %}

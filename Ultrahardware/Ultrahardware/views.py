@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 
-def index(request):
+def Home(request):
     context = {    
     }
-    return render(request, "products/index.html", context)
+    return render(request, "Home.html", context)

@@ -1,0 +1,42 @@
+{% extends 'SidebarTemplate.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/sidebar.css'%}">
+    <link rel="stylesheet" href="{% static 'css/cart.css'%}">
+{% endblock css %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-12" id="cart-products">
+            <!-- inicio item -->
+            <div class="product-item card">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-1">
+                            <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" alt="" class="product-image">
+                        </div>
+                        <div class="col-6 text-center" >Telefono Samsung</div>
+                        <div  class="col-2">
+                            <input type="text" class="form-control" value="2" maxlength="2">
+                        </div>
+                        <div class="col-3 text-right" >$1.000.000</div>
+                    </div>
+                </div>
+            </div>
+            <!-- final item -->
+        </div>
+        <div class="col-md-3 col-12">
+            <div class="card" id="pagar">
+                <div class="card-block">
+                    <span class="col-4" style="padding-left: 0;">Total:</span>
+                    <span class="col-6" style="padding-left: 0;">$1.000.000</span>
+                    <button class="btn btn-success float-right" style="margin-top: 1rem;">PAGAR</button>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

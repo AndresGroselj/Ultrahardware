@@ -25,7 +25,7 @@ SECRET_KEY = '&oe&iq0sdqis*u9sm^b3_by0e#buga(3j#&=*=y1ok$4!&iwq1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["localhost", "ultrahardware.mooo.com"]
 
 
 # Application definition

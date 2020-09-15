@@ -85,6 +85,6 @@ div.discount span {
 	text-decoration: line-through;
 }
 
-::marker {
-	color: transparent;
+li{
+	list-style-type: none;
 }

@@ -19,6 +19,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.Home),
+    path('', views.Home, name="home"),
     path('cart/', include("cart.urls")),
 ]

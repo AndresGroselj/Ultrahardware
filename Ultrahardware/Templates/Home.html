@@ -3,6 +3,7 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/sidebar.css'%}">
+    <link rel="stylesheet" href="{% static 'css/productGalery.css'%}">
 {% endblock css %}
 
 {% block content %}
@@ -43,7 +44,7 @@
     <div class="container">
         <div class="row justify-content-center">
             {% for p in products %}
-                <div class="product-space col-md-3 col-sm-6 col-xs-12">
+                <div class="product-space col-xl-3 col-md-4 col-sm-6 col-6">
                     <div class="card browse-result">
                         <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -56,10 +57,9 @@
             {% endfor %}
 
             <!-- DUMMIES -->
-            <div class="browse-dummy col-3">&nbsp;</div>
-            <div class="browse-dummy col-3">&nbsp;</div>
-            <div class="browse-dummy col-3">&nbsp;</div>
-            <div class="browse-dummy col-3">&nbsp;</div>
+            <div class="browse-dummy col-xl-3 col-md-4 col-sm-6 col-6">&nbsp;</div>
+            <div class="browse-dummy col-xl-3 col-md-4 col-sm-6 col-6">&nbsp;</div>
+            <div class="browse-dummy col-xl-3 col-md-4 col-sm-6 col-6">&nbsp;</div>
             <!---->
         </div>
     </div>

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["localhost", "ultrahardware.mooo.com"]
 # Application definition
 
 INSTALLED_APPS = [
+    'contact.apps.ContactConfig',
     'products.apps.ProductsConfig',
     'cart.apps.CartConfig',
     'django.contrib.admin',

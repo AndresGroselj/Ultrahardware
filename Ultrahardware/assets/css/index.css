@@ -43,8 +43,10 @@
 
 #content {
 	padding-top: 1rem;
+}
+
+body{
 	background-color: #eeeeee;
-	min-height: 100vh;
 }
 
 .wrapper {

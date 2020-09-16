@@ -3,6 +3,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,44 +20,45 @@
     {% endblock css %}
   </head>
   <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
-    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo_UH.png'%}" alt="" height="50px"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <div style="min-height: 100vh;">
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo_UH.png'%}" alt="" height="50px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ofertas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Populares</a>
+                </li>
+            </ul>
             <li class="nav-item">
-                <a class="nav-link" href="#">Ofertas</a>
+                <a class="nav-link" href="{% url 'cart:cart' %}" id="cart"><div>
+                    <span>Cart</span><span class="number">0</span>
+                    <img src="{% static 'img/cart.png' %}" alt="">
+                </div></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Populares</a>
-            </li>
-        </ul>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'cart:cart' %}" id="cart"><div>
-                <span>Cart</span><span class="number">0</span>
-                <img src="{% static 'img/cart.png' %}" alt="">
-            </div></a>
-        </li>
-        <form class="form-inline my-2 my-lg-0" id="searchbar">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-    </nav>
+            <form class="form-inline my-2 my-lg-0" id="searchbar">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        </nav>
 
-    <!-- wrapper -->
-    <div class="row wrapper">
-        {% block wrapper %}
-        {% endblock wrapper %}
+        <!-- wrapper -->
+        <div class="row wrapper">
+            {% block wrapper %}
+            {% endblock wrapper %}
+        </div>
     </div>
-
     <footer class="footer mt-auto py-3" id="footer">
         <div class="container">
-          <span class="text-muted">Place sticky footer content here.</span>
+          <a href="{% url 'contact' %}">Contactanos</a>
         </div>
     </footer>
     

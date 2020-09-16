@@ -4,6 +4,8 @@ from django.shortcuts import render
 
 
 def Home(request):
-    context = {    
+    products = list(range(5))
+    context = {   
+        "products": products 
     }
     return render(request, "Home.html", context)

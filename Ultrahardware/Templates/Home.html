@@ -42,54 +42,24 @@
     <!-- productos -->
     <div class="container">
         <div class="row justify-content-center">
-            <!-- BASE PRODUCT -->
-            <div class="card col-md-3 browse-result">
-                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Telefono</h5>
-                    <div class="discount"><span>$500.000</span> 50%</div>
-                    <h6>$250.000</h6>
+            {% for p in products %}
+                <div class="product-space col-md-3 col-sm-6 col-xs-12">
+                    <div class="card browse-result">
+                        <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">Telefono</h5>
+                        <div class="discount"><span>$500.000</span> 50%</div>
+                        <h6>$250.000</h6>
+                    </div>
+                    </div>
                 </div>
-            </div>
-            <!-- PRODUCTS -->
-            
-            <div class="card col-md-3 browse-result">
-                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Telefono</h5>
-                    <h6>$500.000</h6>
-                </div>
-            </div>
-            <div class="card col-md-3 browse-result">
-                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Telefono</h5>
-                    <h6>$500.000</h6>
-                </div>
-            </div>
-            <div class="card col-md-3 browse-result">
-                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Telefono</h5>
-                    <h6>$500.000</h6>
-                </div>
-            </div>
-            <div class="card col-md-3 browse-result">
-                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Telefono</h5>
-                    <h6>$500.000</h6>
-                </div>
-            </div>
-            
-
+            {% endfor %}
 
             <!-- DUMMIES -->
-            <div class="browse-dummy col-md-3">&nbsp;</div>
-            <div class="browse-dummy col-md-3">&nbsp;</div>
-            <div class="browse-dummy col-md-3">&nbsp;</div>
-            <div class="browse-dummy col-md-3">&nbsp;</div>
-            <div class="browse-dummy col-md-3">&nbsp;</div>
+            <div class="browse-dummy col-3">&nbsp;</div>
+            <div class="browse-dummy col-3">&nbsp;</div>
+            <div class="browse-dummy col-3">&nbsp;</div>
+            <div class="browse-dummy col-3">&nbsp;</div>
             <!---->
         </div>
     </div>

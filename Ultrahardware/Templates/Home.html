@@ -1,20 +1,31 @@
 {% extends 'SidebarTemplate.html' %}
 {% load static %}
 
+
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/sidebar.css'%}">
     <link rel="stylesheet" href="{% static 'css/productGalery.css'%}">
     <link rel="stylesheet" href="{% static 'css/productPreview.css'%}">
 
     <script src="{% static 'js/productPreview.js'%}"></script>
+
+    <script>
+        var products = {{ products }}
+    </script>
 {% endblock css %}
 
 {% block bodyTop %}
-<div id="product-preview">
-    <div id="product-preview-background" class="d-block"></div>
+<div id="product-preview" class="d-none">
+    <div id="product-preview-background"></div>
     <div id="product-preview-card" class="card col-6">
         <h4>Samsung phone</h4>
-        <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
+        <div id="product-preview-images">
+            {% for p in products %}
+            <img for="{{ p }}" src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top d-none" alt="...">
+            {% endfor %}
+        </div>
+        
         <div>
             <button class="btn btn-success float-right"><img src="{% static 'img/cart.png' %}" alt="add to cart"></button>
             <span class="float-right" id="product-price">$500.000</span>
@@ -63,7 +74,7 @@
 <div class="container">
     <div class="row justify-content-center">
         {% for p in products %}
-            <a href="javascript:displayPreview()" class="product-space col-xl-3 col-md-4 col-sm-6 col-6">
+            <a href="javascript:displayPreview({{ p }})" class="product-space col-xl-3 col-md-4 col-sm-6 col-6">
                 <div class="card browse-result">
                     <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
                     <div class="card-body">

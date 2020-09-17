@@ -1,0 +1,36 @@
+#product-preview{
+    position: fixed;
+    z-index: 16;
+}
+
+#product-preview-background{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+#product-preview-card{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem;
+    z-index: 17;
+}
+#product-preview-card img{
+    width: 65%;
+    margin: auto;
+}
+#product-preview-card button{
+    width: 4rem;
+}
+#product-preview-card button img{
+    margin: auto;
+    width: 2rem;
+}
+
+#product-price{
+    margin-top: auto;
+    font-size: 180%;
+    padding-right: 1rem;
+}

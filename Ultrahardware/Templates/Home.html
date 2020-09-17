@@ -11,7 +11,7 @@
     <script src="{% static 'js/productPreview.js'%}"></script>
 
     <script>
-        var products = {{ products }}
+        var products = {{ products }};
     </script>
 {% endblock css %}
 
@@ -73,14 +73,14 @@
 <!-- productos -->
 <div class="container">
     <div class="row justify-content-center">
-        {% for p in products %}
-            <a href="javascript:displayPreview({{ p }})" class="product-space col-xl-3 col-md-4 col-sm-6 col-6">
+        {% for product in products %}
+            <a href="javascript:displayPreview({{ product.product_id }})" class="product-space col-xl-3 col-md-4 col-sm-6 col-6">
                 <div class="card browse-result">
-                    <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top" alt="...">
+                    <img src="{{ product.imagen_principal.url }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                    <h5 class="card-title">Telefono</h5>
-                    <div class="discount"><span>$500.000</span> 50%</div>
-                    <h6>$250.000</h6>
+                    <h5 class="card-title">{{ product.nombre }}</h5>
+                    <div class="discount d-none"><span>$500.000</span> 50%</div>
+                    <h6>${{ product.precio }}</h6>
                 </div>
                 </div>
             </a>

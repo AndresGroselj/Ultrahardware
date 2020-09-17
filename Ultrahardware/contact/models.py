@@ -9,9 +9,5 @@ class Message(models.Model):
     email = models.CharField(max_length=30, blank=True, null=True)
     message = models.CharField(max_length=200, blank=True, null=True)
 
-    class Meta:
-        managed = False #que hace esto?
-        db_table = 'message'
-
     def __str__(self):
         return self.email

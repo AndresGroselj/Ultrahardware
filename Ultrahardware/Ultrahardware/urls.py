@@ -18,9 +18,16 @@ from django.urls import path, include
 from contact import views as contact_views
 from . import views
 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name="home"),
     path('cart/', include("cart.urls")),
     path('contact/', contact_views.Contact, name="contact"),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

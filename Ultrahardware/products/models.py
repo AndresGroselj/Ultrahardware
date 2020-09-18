@@ -1,5 +1,5 @@
 from django.db import models
-
+import json
 
 # Create your models here.
 
@@ -16,5 +16,26 @@ class Product(models.Model):
         return self.nombre
 
     def toJson(self):
-        pass
+        val = {str(self.product_id): {
+            'nombre': self.nombre,
+            'imagen_principal': self.imagen_principal.url,
+            'precio': self.precio,
+            'stock': self.stock,
+            'description': self.description,
+            }}
+        
+        return json.dumps(val)
 
+
+def productsToJson(products):
+    producLib = {}
+    for product in products:
+        lib = {str(product.product_id): {
+            'nombre': product.nombre,
+            'imagen_principal': product.imagen_principal.url,
+            'precio': product.precio,
+            'stock': product.stock,
+            # 'description': product.description,
+            }}
+        producLib = {**producLib, **lib}
+    return json.dumps(producLib)

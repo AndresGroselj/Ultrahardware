@@ -11,7 +11,8 @@
     <script src="{% static 'js/productPreview.js'%}"></script>
 
     <script>
-        var products = {{ products }};
+        var products = JSON.parse('{{ jsonProducts|safe }}');
+        var vartest = 14;
     </script>
 {% endblock css %}
 
@@ -19,16 +20,16 @@
 <div id="product-preview" class="d-none">
     <div id="product-preview-background"></div>
     <div id="product-preview-card" class="card col-6">
-        <h4>Samsung phone</h4>
+        <h4 id="product-preview-name">nombre</h4>
         <div id="product-preview-images">
-            {% for p in products %}
-            <img for="{{ p }}" src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" class="card-img-top d-none" alt="...">
+            {% for product in products %}
+            <img for="{{ product.product_id }}" src="{{ product.imagen_principal.url }}" class="card-img-top d-none" alt="...">
             {% endfor %}
         </div>
         
         <div>
             <button class="btn btn-success float-right"><img src="{% static 'img/cart.png' %}" alt="add to cart"></button>
-            <span class="float-right" id="product-price">$500.000</span>
+            <span class="float-right" id="product-preview-price">$500.000</span>
             <div class="clearfix"></div>
         </div>
     </div>

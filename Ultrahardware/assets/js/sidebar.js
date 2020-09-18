@@ -2,8 +2,6 @@ $( document ).ready(function() {
     var navHeight = document.getElementById("nav").offsetHeight;
     var sidebarMinHeight = 100 - (navHeight * (100 / document.documentElement.clientHeight));
     //document.getElementById("categorias").style.minHeight = sidebarMinHeight + "vh";
-    //document.getElementById("categorias").setAttribute("style","@media (max-width: 992px) {#categorias{min-height: {0}vh;}}".f(sidebarMinHeight))
-
 
     var style = document.createElement('style');
     style.innerHTML = (

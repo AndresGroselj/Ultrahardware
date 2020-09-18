@@ -14,34 +14,16 @@
                 <span>Categorias</span>
             </a>
             <nav class="d-xl-block d-lg-block collapse" id="category-list">
+                {% for category_parent in categorie_parents %}
                 <ul class="navbar-nav mr-auto">
-                    <a href="#categoria-accesorios" data-toggle="collapse">Accesorios</a>
-                    <li id="categoria-accesorios" class="collapse">
-                        <ul>audifonos</ul>
-                        <ul>pendrives</ul>
+                    <a href="#category-{{ category_parent.categoryParent_id }}" data-toggle="collapse">{{ category_parent.nombre }}</a>
+                    <li id="category-{{ category_parent.categoryParent_id }}" class="collapse">
+                        {% for categoria in category_parent.Categorias %}
+                        <ul>{{ categoria.nombre }}</ul>
+                        {% endfor %}
                     </li>
                 </ul>
-                <ul class="navbar-nav mr-auto">
-                    <a href="#categoria-almacenamiento" data-toggle="collapse">Almacenamiento</a>
-                    <li id="categoria-almacenamiento" class="collapse">
-                        <ul>audifonos</ul>
-                        <ul>pendrives</ul>
-                    </li>
-                </ul>
-                <ul class="navbar-nav mr-auto">
-                    <a href="#categoria-audiovideo" data-toggle="collapse">Audio y video</a>
-                    <li id="categoria-audiovideo" class="collapse">
-                        <ul>audifonos</ul>
-                        <ul>pendrives</ul>
-                    </li>
-                </ul>
-                <ul class="navbar-nav mr-auto">
-                    <a href="#categoria-componentespc" data-toggle="collapse">Componentes PC</a>
-                    <li id="categoria-componentespc" class="collapse">
-                        <ul>audifonos</ul>
-                        <ul>pendrives</ul>
-                    </li>
-                </ul>
+                {% endfor %}
             </nav>
         </div>
         <!-- content -->

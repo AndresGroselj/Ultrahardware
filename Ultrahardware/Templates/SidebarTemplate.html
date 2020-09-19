@@ -14,7 +14,7 @@
                 <span>Categorias</span>
             </a>
             <nav class="d-xl-block d-lg-block collapse" id="category-list">
-                {% for category_parent in categorie_parents %}
+                {% for category_parent in category_parents %}
                 <ul class="navbar-nav mr-auto">
                     <a href="#category-{{ category_parent.categoryParent_id }}" data-toggle="collapse">{{ category_parent.nombre }}</a>
                     <li id="category-{{ category_parent.categoryParent_id }}" class="collapse">

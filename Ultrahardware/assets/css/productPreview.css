@@ -17,7 +17,7 @@
     padding: 1rem;
     z-index: 17;
 }
-#product-preview-card img{
+.preview-image{
     width: 65%;
     margin: 0 auto 0 auto;
     display: block;

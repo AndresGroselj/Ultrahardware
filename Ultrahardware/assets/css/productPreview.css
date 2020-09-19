@@ -19,10 +19,12 @@
 }
 #product-preview-card img{
     width: 65%;
-    margin: auto;
+    margin: 0 auto 0 auto;
+    display: block;
 }
 #product-preview-card button{
     width: 4rem;
+    height: 3rem;
 }
 #product-preview-card button img{
     margin: auto;

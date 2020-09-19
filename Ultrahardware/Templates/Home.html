@@ -12,7 +12,6 @@
 
     <script>
         var products = JSON.parse('{{ jsonProducts|safe }}');
-        var vartest = 14;
     </script>
 {% endblock css %}
 
@@ -20,18 +19,37 @@
 <div id="product-preview" class="d-none">
     <div id="product-preview-background"></div>
     <div id="product-preview-card" class="card col-6">
-        <h4 id="product-preview-name">nombre</h4>
+        <!-- <h4 id="product-preview-name">nombre</h4>
         <div id="product-preview-images">
             {% for product in products %}
             <img for="{{ product.product_id }}" src="{{ product.imagen_principal.url }}" class="card-img-top d-none" alt="...">
             {% endfor %}
         </div>
         
-        <div>
-            <button class="btn btn-success float-right"><img src="{% static 'img/cart.png' %}" alt="add to cart"></button>
-            <span class="float-right" id="product-preview-price">$500.000</span>
-            <div class="clearfix"></div>
+        <div class="row align-self-end container">
+            <p class="col-9" id="product-preview-desc"></p>
+            <div class="col3">
+                <span class="" id="product-preview-price">$500.000</span><br>
+                <button class="btn btn-success"><img src="{% static 'img/cart.png' %}" alt="add to cart"></button>
+            </div>
+        </div> -->
+        <div id="product-preview-products">
+            {% for product in products %}
+            <div for="{{ product.product_id }}">
+                <h4>{{ product.nombre }}</h4>
+                <div><img src="{{ product.imagen_principal.url }}" class="card-img-top" alt="..."></div>
+                <div class="row align-self-end container">
+                    <p class="col-9">{{ product.description }}</p>
+                    <div class="col3">
+                        <span class="">{{ product.formatedPrice }}</span><br>
+                        <button class="btn btn-success"><img src="{% static 'img/cart.png' %}" alt="add to cart"></button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
+        
+        
     </div>
 </div>
 
@@ -81,7 +99,7 @@
                     <div class="card-body">
                     <h5 class="card-title">{{ product.nombre }}</h5>
                     <div class="discount d-none"><span>$500.000</span> 50%</div>
-                    <h6>${{ product.precio }}</h6>
+                    <h6>{{ product.formatedPrice }}</h6>
                 </div>
                 </div>
             </a>

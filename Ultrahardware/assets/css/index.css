@@ -16,7 +16,7 @@
 	padding-left: 0;
 }
 
-#cart span.number {
+#cart-number {
 	margin-left: .5rem;
 	color: green;
 }

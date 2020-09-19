@@ -1,0 +1,9 @@
+#map{
+    margin: auto;
+    width: 60vw;
+    height: 75vh;
+}
+#map iframe{
+    height: 100%;
+    width: 100%;
+}

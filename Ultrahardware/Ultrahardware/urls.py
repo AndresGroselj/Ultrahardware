@@ -25,6 +25,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name="home"),
+    path('location', views.Location, name="location"),
     path('cart/', include("cart.urls")),
     path('contact/', contact_views.Contact, name="contact"),
 ]

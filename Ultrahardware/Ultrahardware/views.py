@@ -12,3 +12,9 @@ def Home(request):
         "category_parents": category_parents
     }
     return render(request, "Home.html", context)
+
+def Location(request):
+    context = {
+        "direccion": "Padre+Mariano+356,+Providencia,+Región+Metropolitana,Chile"
+    }
+    return render(request, "Location.html", context)

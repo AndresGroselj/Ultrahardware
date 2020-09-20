@@ -10,20 +10,22 @@
 {% block wrapper %}
     <!-- SIDEBAR -->
         <div class="col-12 col-lg-3 col-xl-2" id="categorias">
-            <a class="category-toggler d-lg-none d-xl-none" type="button" data-toggle="collapse" data-target="#category-list" aria-controls="category-list" aria-expanded="false" aria-label="Toggle navigation">
+            <a href="" class="category-toggler d-lg-none d-xl-none" data-toggle="collapse" data-target="#category-list" aria-controls="category-list" aria-expanded="false" aria-label="Toggle navigation">
                 <span>Categorias</span>
             </a>
             <nav class="d-xl-block d-lg-block collapse" id="category-list">
-                {% for category_parent in category_parents %}
-                <ul class="navbar-nav mr-auto">
-                    <a href="#category-{{ category_parent.categoryParent_id }}" data-toggle="collapse">{{ category_parent.nombre }}</a>
-                    <li id="category-{{ category_parent.categoryParent_id }}" class="collapse">
-                        {% for categoria in category_parent.Categorias %}
-                        <ul>{{ categoria.nombre }}</ul>
-                        {% endfor %}
+                <ul>
+                    {% for category_parent in category_parents %}
+                    <li class="navbar-nav mr-auto category-parent">
+                        <a href="#category-{{ category_parent.categoryParent_id }}" data-toggle="collapse">{{ category_parent.nombre }}</a>
+                        <ul id="category-{{ category_parent.categoryParent_id }}" class="collapse">
+                            {% for categoria in category_parent.Categorias %}
+                            <li>{{ categoria.nombre }}</li>
+                            {% endfor %}
+                        </ul>
                     </li>
+                    {% endfor %}
                 </ul>
-                {% endfor %}
             </nav>
         </div>
         <!-- content -->

@@ -8,11 +8,14 @@
 	/* padding-top: 5px; */
 }
 
-#categorias nav ul {
+#categorias nav li.category-parent{
 	color: rgb(255, 255, 255);
 	margin-bottom: 5px;
-	margin-left: 30px;
 	padding-left: 0;
+}
+
+#categorias nav ul{
+	padding-left: 20px;
 }
 
 #categorias nav a {
@@ -30,6 +33,7 @@
 	color: #eeeeee;
 	font-size: 150%;
 	transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	cursor: pointer;
 }
 
 #categorias a.category-toggler[aria-expanded="true"] {

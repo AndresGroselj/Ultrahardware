@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/location.css' %}">
+<link rel="stylesheet" href="{% static 'css/location.css' %}">
 {% endblock css %}
 
 {% block wrapper %}
 <div class="container">
-    <h1 class="text-center">tienda</h1>
-    <div class="card " id="map">
-        <iframe style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyASverDnv0d0AigXo8nAmVeN9QXNcI2snU&q={{ direccion }}" allowfullscreen>
-        </iframe>
-    </div>
+<h1 class="text-center">tienda</h1>
+<div class="card " id="map">
+    <iframe style="border:0" src="https://www.google.com/maps/embed/v1/place?key={{ maps_key }}&q={{ direccion }}" allowfullscreen>
+    </iframe>
+</div>
 </div>
 {% endblock wrapper %}

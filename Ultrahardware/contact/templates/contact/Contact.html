@@ -4,33 +4,40 @@
 {% block title %}Contact{% endblock title %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/contact.css'%}">
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
 {% endblock css %}
+
+{% block js %}
+<script src="{% static 'js/contactValidator.js' %}"></script>
+{% endblock js %}
 
 {% block wrapper %}
 <div class="card" id="contactCard">
-<form action="#" method="GET">
+<form action="#" method="POST" id="contactForm">
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputNombre">Nombre</label>
-            <input type="text" class="form-control" id="inputNombre" maxlength="20" required>
+            <input type="text" class="form-control" id="inputNombre" name="inputNombre" maxlength="20">
+            <div class="invalid-feedback">
+                Ingrese su nombre.
+            </div>
         </div>
         <div class="form-group col-md-6">
             <label for="inputApellido">Apellido</label>
-            <input type="text" class="form-control" id="inputApellido" maxlength="20" required>
+            <input type="text" class="form-control" id="inputApellido" name="inputApellido" maxlength="20" >
         </div>
     </div>
     <div class="form-group">
         <label for="inputEmail">Email</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="correo@dominio.com" maxlength="50" required pattern="([a-zA-Z0-9\.]*)@([a-zA-Z0-9\.]*)(\.[a-z]*)$">
+        <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="correo@dominio.com" maxlength="50">
     </div>
     <div class="form-group">
         <label for="inputAsunto">Asunto</label>
-        <input type="text" class="form-control" id="inputAsunto" placeholder="" maxlength="50" required>
+        <input type="text" class="form-control" id="inputAsunto" name="inputAsunto" placeholder="" maxlength="50">
     </div>
     <div class="form-group">
         <label for="inputMensaje">Mensaje</label>
-        <textarea class="form-control md-textarea" id="inputMensaje" rows="5" maxlength="300" required></textarea>
+        <textarea class="form-control md-textarea" id="inputMensaje" name="inputMensaje" rows="2" maxlength="300"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>

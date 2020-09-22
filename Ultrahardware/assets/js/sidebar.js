@@ -1,7 +1,6 @@
 $( document ).ready(function() {
     var navHeight = document.getElementById("nav").offsetHeight;
     var sidebarMinHeight = 100 - (navHeight * (100 / document.documentElement.clientHeight));
-    //document.getElementById("categorias").style.minHeight = sidebarMinHeight + "vh";
 
     var style = document.createElement('style');
     style.innerHTML = (
@@ -9,7 +8,7 @@ $( document ).ready(function() {
         "#categorias{"               +
             "min-height: {0}vh;"     +
         "}}").f(sidebarMinHeight);
-
+    style.classList.add("temp")
     document.head.append(style);
 });
 

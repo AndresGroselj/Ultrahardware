@@ -23,7 +23,7 @@
         {% for product in products %}
         <div slot="{{ product.product_id }}">
             <h4>{{ product.nombre }}</h4>
-            <img src="{{ product.imagen_principal.url }}" class="preview-image" alt="...">
+            <img src="{{ product.imagen_principal.url }}" class="preview-image" alt="{{ product.nombre }}">
             <div class="row align-self-end container">
             <p class="col-lg-9 col-12">{{ product.description }}</p>
             <div class="col-lg-3 col-12 row">
@@ -50,16 +50,16 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active" data-interval="10000">
-            <img src="{% static 'img/promo_1.png' %}" class="d-block w-100" alt="...">
+            <img src="{% static 'img/promo_1.png' %}" class="d-block w-100" alt="promo1">
         </div>
         <div class="carousel-item" data-interval="2000">
-            <img src="{% static 'img/promo_2.png' %}" class="d-block w-100" alt="...">
+            <img src="{% static 'img/promo_2.png' %}" class="d-block w-100" alt="promo2">
         </div>
         <div class="carousel-item">
-            <img src="{% static 'img/promo_3.png' %}" class="d-block w-100" alt="...">
+            <img src="{% static 'img/promo_3.png' %}" class="d-block w-100" alt="promo3">
         </div>
         <div class="carousel-item">
-            <img src="{% static 'img/promo_4.png' %}" class="d-block w-100" alt="...">
+            <img src="{% static 'img/promo_4.png' %}" class="d-block w-100" alt="promo4">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -78,7 +78,7 @@
     {% for product in products %}
     <a href="javascript:displayPreview({{ product.product_id }})" class="product-space col-xl-3 col-md-4 col-sm-6 col-6">
         <div class="card browse-result">
-            <img src="{{ product.imagen_principal.url }}" class="card-img-top" alt="...">
+            <img src="{{ product.imagen_principal.url }}" class="card-img-top" alt="{{ product.nombre }}">
             <div class="card-body">
             <h5 class="card-title">{{ product.nombre }}</h5>
             <div class="discount d-none"><span>$500.000</span> 50%</div>

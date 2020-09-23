@@ -24,3 +24,12 @@
     padding: 1rem;
     max-width: 15rem;
 }
+
+.product-item{
+	padding: 3px;
+	font-size: large;
+}
+
+.product-item .ammount input{
+	max-width: 5rem;
+}

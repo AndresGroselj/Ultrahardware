@@ -26,7 +26,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
-    category_id = models.ForeignKey(Category_parent, null=True, on_delete=models.SET_NULL)
+    category_id = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
     nombre = models.CharField(max_length=50, blank=True, null=True)
     imagen_principal = models.ImageField(blank=True, null=True, default="productDefault.png")
     precio = models.IntegerField()

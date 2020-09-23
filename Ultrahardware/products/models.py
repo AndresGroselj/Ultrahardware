@@ -33,6 +33,7 @@ class Product(models.Model):
     stock = models.IntegerField()
     description = models.TextField(blank=True, null=True)
     specs = models.TextField(blank=True, null=True)
+    views = models.IntegerField(default=0)
 
     def __str__(self):
         return self.nombre
@@ -40,17 +41,6 @@ class Product(models.Model):
     @property
     def formatedPrice(self):
         return "${:,.0f}".format(self.precio)
-
-    def toJson(self):
-        val = {str(self.product_id): {
-            'nombre': self.nombre,
-            'imagen_principal': self.imagen_principal.url,
-            'precio': self.precio,
-            'stock': self.stock,
-            'description': self.description,
-            }}
-        
-        return json.dumps(val)
     
     # @property
     # def test(self):
@@ -61,17 +51,3 @@ class Product(models.Model):
     # def test(h):
     #     return "testSuccess"
     #<h1>{{ product.test }}</h1>
-
-
-def productsToJson(products):
-    producLib = {}
-    for product in products:
-        lib = {str(product.product_id): {
-            'nombre': product.nombre,
-            'imagen_principal': product.imagen_principal.url,
-            'precio': product.formatedPrice,
-            'stock': product.stock,
-            'description': product.description,
-            }}
-        producLib = {**producLib, **lib}
-    return json.dumps(producLib)

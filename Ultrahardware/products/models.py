@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 import json
 
@@ -51,3 +52,21 @@ class Product(models.Model):
     # def test(h):
     #     return "testSuccess"
     #<h1>{{ product.test }}</h1>
+
+class Discount(models.Model):
+    Discount_id = models.AutoField(primary_key=True)
+    product_id = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
+    discount = models.IntegerField(default=10,
+    validators=[
+            MaxValueValidator(100),
+            MinValueValidator(1)
+        ])
+    startDate = models.DateField()
+    endDate = models.DateField()
+
+    def __str__(self):
+        return f"{self.Discount_id}: {self.product_id.nombre} | {self.discount}%"
+    
+    @property
+    def float(self):
+        return self.discount / 100

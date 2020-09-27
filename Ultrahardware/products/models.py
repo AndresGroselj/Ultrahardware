@@ -45,44 +45,20 @@ class Product(models.Model):
         return "${:,.0f}".format(self.precio)
     
     @property
-    def HasDiscount(self):
+    def FullPrice(self):
         descuentos = Discount.objects.filter(product_id=self.product_id)
-        descuento = False
+        isDiscounted = False
+        discount = 0
+        discountFloat = 0
         for d in descuentos:
             if d.startDate <= date.today() <= d.endDate:
-                descuento = True
+                isDiscounted = True
+                discount = d.discount
+                discountFloat = d.DiscountToFloat
                 break
-        return descuento
-
-    @property
-    def GetDiscount(self):
-        descuentos = Discount.objects.filter(product_id=self.product_id)
-        descuento = 0
-        for d in descuentos:
-            if d.startDate <= date.today() <= d.endDate:
-                descuento = d.discount
-                break
-        return (descuento)
-    
-    @property
-    def GetDiscountedPrice(self):
-        descuentos = Discount.objects.filter(product_id=self.product_id)
-        descuento = 0
-        for d in descuentos:
-            if d.startDate <= date.today() <= d.endDate:
-                descuento = d.DiscountToFloat
-                break
-        return "${:,.0f}".format(round(self.precio * descuento))
-    
-    # @property
-    # def test(self):
-    #     return  [1,2,3]
-    # {% for n in product.test %}<h1>{{n}}</1>{% endfor %}
-
-    # @property
-    # def test(h):
-    #     return "testSuccess"
-    #<h1>{{ product.test }}</h1>
+        originalPrice = "${:,.0f}".format(self.precio)
+        totalPrice = "${:,.0f}".format(round(self.precio * (1 - discountFloat)))
+        return (isDiscounted, discount, originalPrice, totalPrice)
 
 class Discount(models.Model):
     Discount_id = models.AutoField(primary_key=True)

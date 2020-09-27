@@ -47,9 +47,11 @@
         <div class="card browse-result">
             <img src="{{ product.imagen_principal.url }}" class="card-img-top" alt="{{ product.nombre }}">
             <div class="card-body">
-            <h5 class="card-title">{{ product.nombre }}</h5>
-            <div class="discount d-none"><span>$500.000</span> 50%</div>
-            <h6>{{ product.formatedPrice }}</h6>
+                <h5 class="card-title">{{ product.nombre }}</h5>
+                {% if product.FullPrice.0 %}
+                    <div class="discount"><span>{{ product.FullPrice.2 }}</span> {{ product.FullPrice.1 }}%</div>
+                {% endif %}
+                <h6>{{ product.FullPrice.3 }}</h6>
             </div>
         </div>
     </a>

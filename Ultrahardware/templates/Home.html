@@ -27,7 +27,12 @@
             <div class="row align-self-end container">
             <p class="col-lg-9 col-12">{{ product.description }}</p>
             <div class="col-lg-3 col-12 row">
-                <span class="col-lg-12 col-6">{{ product.formatedPrice }}</span><br>
+                <div class="col-lg-12 col-6">
+                    {% if product.FullPrice.0 %}
+                    <div class="discount"><span>{{ product.FullPrice.2 }}</span> {{ product.FullPrice.1 }}%</div>
+                    {% endif %}
+                    <span>{{ product.FullPrice.3 }}</span><br>
+                </div>
                 <button class="btn btn-success col-lg-12 col-6" onclick="AddToCart('{{ product.product_id }}', 1)"><img src="{% static 'img/cart.png' %}" alt="add to cart"></button>
             </div>
             </div>
@@ -80,14 +85,11 @@
         <div class="card browse-result">
             <img src="{{ product.imagen_principal.url }}" class="card-img-top" alt="{{ product.nombre }}">
             <div class="card-body">
-            <h5 class="card-title">{{ product.nombre }}</h5>
-            {% if product.HasDiscount %}
-                <div class="discount"><span>{{ product.formatedPrice }}</span> {{ product.GetDiscount }}%</div>
-                <h6>{{ product.GetDiscountedPrice }}</h6>
-            {% else %}
-                <h6>{{ product.formatedPrice }}</h6>
-            {% endif %}
-            
+                <h5 class="card-title">{{ product.nombre }}</h5>
+                {% if product.FullPrice.0 %}
+                    <div class="discount"><span>{{ product.FullPrice.2 }}</span> {{ product.FullPrice.1 }}%</div>
+                {% endif %}
+                <h6>{{ product.FullPrice.3 }}</h6>
             </div>
         </div>
     </a>

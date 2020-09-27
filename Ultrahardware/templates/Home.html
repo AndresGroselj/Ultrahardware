@@ -81,8 +81,13 @@
             <img src="{{ product.imagen_principal.url }}" class="card-img-top" alt="{{ product.nombre }}">
             <div class="card-body">
             <h5 class="card-title">{{ product.nombre }}</h5>
-            <div class="discount d-none"><span>$500.000</span> 50%</div>
-            <h6>{{ product.formatedPrice }}</h6>
+            {% if product.HasDiscount %}
+                <div class="discount"><span>{{ product.formatedPrice }}</span> {{ product.GetDiscount }}%</div>
+                <h6>{{ product.GetDiscountedPrice }}</h6>
+            {% else %}
+                <h6>{{ product.formatedPrice }}</h6>
+            {% endif %}
+            
             </div>
         </div>
     </a>

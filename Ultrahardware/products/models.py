@@ -1,5 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from datetime import date
 import json
 
 # Create your models here.
@@ -43,6 +44,36 @@ class Product(models.Model):
     def formatedPrice(self):
         return "${:,.0f}".format(self.precio)
     
+    @property
+    def HasDiscount(self):
+        descuentos = Discount.objects.filter(product_id=self.product_id)
+        descuento = False
+        for d in descuentos:
+            if d.startDate <= date.today() <= d.endDate:
+                descuento = True
+                break
+        return descuento
+
+    @property
+    def GetDiscount(self):
+        descuentos = Discount.objects.filter(product_id=self.product_id)
+        descuento = 0
+        for d in descuentos:
+            if d.startDate <= date.today() <= d.endDate:
+                descuento = d.discount
+                break
+        return (descuento)
+    
+    @property
+    def GetDiscountedPrice(self):
+        descuentos = Discount.objects.filter(product_id=self.product_id)
+        descuento = 0
+        for d in descuentos:
+            if d.startDate <= date.today() <= d.endDate:
+                descuento = d.DiscountToFloat
+                break
+        return "${:,.0f}".format(round(self.precio * descuento))
+    
     # @property
     # def test(self):
     #     return  [1,2,3]
@@ -68,5 +99,5 @@ class Discount(models.Model):
         return f"{self.Discount_id}: {self.product_id.nombre} | {self.discount}%"
     
     @property
-    def float(self):
+    def DiscountToFloat(self):
         return self.discount / 100

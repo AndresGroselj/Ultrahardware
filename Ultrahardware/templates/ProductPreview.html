@@ -1,0 +1,26 @@
+{% load static %}
+<div id="product-preview" class="d-none">
+    <div id="product-preview-background"></div>
+    <div id="product-preview-card" class="card col-lg-6 col-sm-10 col-12">
+        <div id="product-preview-products">
+            {% for product in products %}
+            <div slot="{{ product.product_id }}">
+                <h4>{{ product.nombre }}</h4>
+                <img src="{{ product.imagen_principal.url }}" class="preview-image" alt="{{ product.nombre }}">
+                <div class="row align-self-end container">
+                <p class="col-lg-9 col-12">{{ product.description }}</p>
+                <div class="col-lg-3 col-12 row">
+                    <div class="col-lg-12 col-6">
+                        {% if product.FullPrice.0 %}
+                        <div class="discount"><span>{{ product.FullPrice.2 }}</span> {{ product.FullPrice.1 }}%</div>
+                        {% endif %}
+                        <span>{{ product.FullPrice.3 }}</span><br>
+                    </div>
+                    <button class="btn btn-success col-lg-12 col-6" onclick="AddToCart('{{ product.product_id }}', 1)"><img src="{% static 'img/cart.png' %}" alt="add to cart"></button>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>

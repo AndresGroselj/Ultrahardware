@@ -1,0 +1,18 @@
+{% extends 'BaseTemplate.html' %}
+{% load static %}
+
+{% block title %}Location{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/location.css' %}">
+{% endblock css %}
+
+{% block wrapper %}
+<div class="container">
+<h1 class="text-center">Tienda</h1>
+<div class="card " id="map">
+    <iframe style="border:0" src="https://www.google.com/maps/embed/v1/place?key={{ maps_key }}&q={{ direccion }}" allowfullscreen>
+    </iframe>
+</div>
+</div>
+{% endblock wrapper %}

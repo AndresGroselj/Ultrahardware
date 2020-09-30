@@ -11,6 +11,10 @@
 	padding-bottom: 12px;
 }
 
+.navbar-brand img{
+	height: 50px;
+}
+
 /* varbar cart */
 #cart {
 	padding-left: 0;

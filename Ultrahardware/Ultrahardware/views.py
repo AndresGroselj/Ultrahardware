@@ -15,6 +15,7 @@ def Home(request):
 
 def Location(request):
     context = {
+        "maps_key": "AIzaSyASverDnv0d0AigXo8nAmVeN9QXNcI2snU",
         "direccion": "Padre+Mariano+356,+Providencia,+Región+Metropolitana,Chile"
     }
     return render(request, "Location.html", context)

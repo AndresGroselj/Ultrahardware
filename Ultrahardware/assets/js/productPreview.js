@@ -11,7 +11,7 @@ function displayPreview(product_id){
     $('#product-preview-products').children('div').each(function () {
         this.classList.remove("d-block");
         this.classList.add("d-none");
-        if (this.getAttribute("for") == product_id){
+        if (this.getAttribute("slot") == product_id){
             this.classList.remove("d-none");
             this.classList.add("d-block");
         }

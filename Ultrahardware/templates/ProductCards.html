@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row justify-content-center">
+        {% for product in products %}
+        <a href="javascript:displayPreview({{ product.product_id }})" class="product-space col-xl-3 col-md-4 col-sm-6 col-6">
+            <div class="card browse-result">
+                <img src="{{ product.imagen_principal.url }}" class="card-img-top" alt="{{ product.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.nombre }}</h5>
+                    {% if product.FullPrice.0 %}
+                        <div class="discount"><span>{{ product.FullPrice.2 }}</span> {{ product.FullPrice.1 }}%</div>
+                    {% endif %}
+                    <h6>{{ product.FullPrice.3 }}</h6>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        <!-- DUMMIES -->
+        <div class="browse-dummy col-xl-3 col-md-4 col-sm-6 col-6">&nbsp;</div>
+        <div class="browse-dummy col-xl-3 col-md-4 col-sm-6 col-6">&nbsp;</div>
+        <div class="browse-dummy col-xl-3 col-md-4 col-sm-6 col-6">&nbsp;</div>
+        <!---->
+    </div>
+</div>

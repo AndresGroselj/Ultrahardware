@@ -1,0 +1,25 @@
+{% extends 'SidebarTemplate.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/sidebar.css'%}">
+<link rel="stylesheet" href="{% static 'css/productGalery.css'%}">
+<link rel="stylesheet" href="{% static 'css/productPreview.css'%}">
+{% endblock css %}
+
+{% block js %}
+<script src="{% static 'js/sidebar.js'%}"></script>
+<script src="{% static 'js/productPreview.js'%}"></script>
+<script src="{% static 'js/cart.js'%}"></script>
+{% endblock js %}
+
+{% block bodyTop %}
+{% include "ProductPreview.html" %}
+{% endblock bodyTop %}
+
+{% block content %}
+<!-- productos -->
+{% include "ProductCards.html" %}
+{% endblock content %}

@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Category_parent)
 admin.site.register(Category)
 admin.site.register(Product)
+admin.site.register(Discount)

@@ -1,0 +1,13 @@
+.preview-pic div img {
+height: 25rem ;
+
+}
+
+.preview-thumbnail img {
+height: 5rem ;
+
+}
+
+.maincontainer {
+box-sizing: content-box;    
+}

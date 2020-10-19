@@ -19,3 +19,17 @@ def Popular(request):
         "category_parents": category_parents
     }
     return render(request, "products/PopularProducts.html", context)
+
+def List(request):
+    products = models.Product.objects.order_by("views")[::-1]
+    context = {   
+        "products": products,
+    }
+    return render(request, "products/List.html", context)
+
+def Edit(request, _product_id):
+    product = models.Product.objects.get(product_id = _product_id)
+    context = {
+        "product": product
+    }
+    return render(request, "products/EditProduct.html", context)

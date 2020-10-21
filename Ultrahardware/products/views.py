@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from . import models
+from . import forms
 from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
@@ -36,7 +37,10 @@ def List(request):
 
 def Edit(request, _product_id):
     product = models.Product.objects.get(product_id = _product_id)
+    data = {"category_id": product.category_id, "nombre": product.nombre}
+    form = forms.Product(initial=data)
     context = {
-        "product": product
+        "product": product,
+        "form": form
     }
     return render(request, "products/EditProduct.html", context)

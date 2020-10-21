@@ -21,7 +21,12 @@ def Popular(request):
     return render(request, "products/PopularProducts.html", context)
 
 def List(request):
-    products = models.Product.objects.order_by("views")[::-1]
+    _get = request.GET
+    if ("search" in _get):
+        products = models.Product.objects.filter(nombre__contains=_get["search"])
+    else:
+        products = models.Product.objects
+    products = products.order_by("views")[::-1]
     context = {   
         "products": products,
     }

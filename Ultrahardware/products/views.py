@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from . import models
+from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
 
@@ -20,6 +21,7 @@ def Popular(request):
     }
     return render(request, "products/PopularProducts.html", context)
 
+@permission_required("is_superuser")
 def List(request):
     _get = request.GET
     if ("search" in _get):

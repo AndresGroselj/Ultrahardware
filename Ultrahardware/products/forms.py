@@ -4,6 +4,10 @@ from django.utils.translation import gettext, gettext_lazy as _
 
 
 class Product(forms.ModelForm):
+    product_id = forms.IntegerField(
+        label=_("id"),
+        widget=forms.HiddenInput()
+    )
     category_id = forms.ModelChoiceField(
         label=_("category"),
         queryset=models.Category.objects.all(),
@@ -35,6 +39,10 @@ class Product(forms.ModelForm):
         label=_("Especificaciones"),
         strip=False,
         widget=forms.Textarea(attrs={'class': 'form-control'}),
+    )
+    views = forms.IntegerField(
+        label=_("views"),
+        widget=forms.HiddenInput()
     )
     class Meta:
         model = models.Product

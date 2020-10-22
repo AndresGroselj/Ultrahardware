@@ -38,6 +38,7 @@ def List(request):
 def Edit(request, _product_id):
     product = models.Product.objects.get(product_id = _product_id)
     data = {
+        "product_id": product.product_id, 
         "category_id": product.category_id, 
         "nombre": product.nombre,
         "imagen_principal": product.imagen_principal,
@@ -45,6 +46,7 @@ def Edit(request, _product_id):
         "stock": product.stock,
         "description": product.description,
         "specs": product.specs,
+        "views": product.views,
         }
     form = forms.Product(initial=data)
     context = {

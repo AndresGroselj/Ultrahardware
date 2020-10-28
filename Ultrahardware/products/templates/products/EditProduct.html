@@ -11,8 +11,11 @@
 {% block wrapper %}
 <h1>{{product.nombre}}</h1> <br>
 <div>
-    <form action="">
+    <form action="{% url 'products:edit' _product_id=form.product_id.value %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
         {{ form }}
+        <input type="submit" name="action" value="Update" />
+        <input type="submit" name="action" value="Delete" />
     </form>
 </div>
 {% endblock wrapper %}

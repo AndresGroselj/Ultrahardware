@@ -3,15 +3,16 @@ from . import models
 from django.utils.translation import gettext, gettext_lazy as _
 
 
-class Product(forms.ModelForm):
+class Product(forms.Form):
     product_id = forms.IntegerField(
         label=_("id"),
         widget=forms.HiddenInput()
     )
     category_id = forms.ModelChoiceField(
         label=_("category"),
+        required=True,
         queryset=models.Category.objects.all(),
-        widget=forms.Select(attrs={'class': 'form-control'})
+        widget=forms.Select(attrs={'class': 'form-control'}), 
     )
     nombre = forms.CharField(
         label=_("nombre"),
@@ -20,6 +21,7 @@ class Product(forms.ModelForm):
     )
     imagen_principal = forms.ImageField(
         label=_("Imagen principal"),
+        required = False,
         widget=forms.FileInput(attrs={'class': 'form-control'})
     )
     precio = forms.IntegerField(
@@ -33,11 +35,13 @@ class Product(forms.ModelForm):
     description = forms.CharField(
         label=_("Descipcion"),
         strip=False,
+        required = False,
         widget=forms.Textarea(attrs={'class': 'form-control'}),
     )
     specs = forms.CharField(
         label=_("Especificaciones"),
         strip=False,
+        required = False,
         widget=forms.Textarea(attrs={'class': 'form-control'}),
     )
     views = forms.IntegerField(

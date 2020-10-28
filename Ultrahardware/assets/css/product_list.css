@@ -1,0 +1,5 @@
+span.id{
+    color: green;
+    min-width: 2rem;
+    display: inline-block;
+}

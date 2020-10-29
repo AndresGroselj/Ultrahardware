@@ -3,6 +3,23 @@ from . import forms
 from django.contrib.auth import login, logout
 # Create your views here.
 
+
+def Signup(request):
+    if request.method == "POST":
+        form = forms.Custom_UserCreationForm(request.POST)
+        if form.is_valid():
+            print(" if form.iSAVING NEW USER")
+            user = form.save()
+
+            login(request, user)
+            return redirect("home:home_page")
+    else:
+        form = forms.Custom_UserCreationForm()
+    context = {
+        "form" : form
+    }
+    return render(request, "accounts/Signup.html", context)
+
 def Login(request):
     if request.method == "POST":
         form = forms.Custom_AuthenticationForm(data=request.POST)

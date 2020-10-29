@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
+from . import forms
 from django.contrib.auth import login, logout
 # Create your views here.
 
 def Login(request):
     if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
+        form = forms.Custom_AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
@@ -14,7 +14,7 @@ def Login(request):
             else:
                 return redirect("home")
     else:
-        form = AuthenticationForm()
+        form = forms.Custom_AuthenticationForm()
         context = {
             "form": form
         }

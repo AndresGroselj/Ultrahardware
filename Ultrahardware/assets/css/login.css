@@ -1,0 +1,8 @@
+div.card{
+    padding: 1rem;
+    margin: 1rem auto;
+}
+
+div.card input[type="submit"]{
+    margin-top: 0.5rem;
+}

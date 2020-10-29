@@ -21,6 +21,5 @@ def Login(request):
         return render(request, "accounts/Login.html", context)
 
 def Logout(request):
-    if request.method == "POST":
-        logout(request)
-    return redirect("home:home_page")
+    logout(request)
+    return redirect("home")

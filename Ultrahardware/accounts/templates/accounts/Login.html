@@ -1,0 +1,10 @@
+{% extends 'BaseTemplate.html' %}
+{% load static %}
+
+{% block wrapper %}
+<form action="{% url 'accounts:login' %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="action" value="Login" />
+</form>
+{% endblock wrapper %}

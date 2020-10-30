@@ -6,11 +6,35 @@
 {% endblock css %}
 
 {% block wrapper %}
-<div class="card">
-    <form action="{% url 'accounts:login' %}" method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" name="action" value="Crear Cuenta" class="btn btn-info float-right" />
-    </form>
+<div class="container">
+    <div class="card">
+        <form action="{% url 'accounts:signup' %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" name="action" value="Crear Cuenta" class="btn btn-info float-right" />
+        </form>
+    </div>
+    <div>
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <strong>{{ error|escape }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>{{ error|escape }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
 </div>
 {% endblock wrapper %}

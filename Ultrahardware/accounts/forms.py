@@ -20,17 +20,22 @@ class Custom_UserCreationForm(UserCreationForm):
     username = UsernameField(
         label=_("Nombre"),
         strip=False,
-        widget=forms.TextInput(attrs={}),
+        widget=forms.TextInput(attrs={'class': 'form-control',}),
     )
     password1 = forms.CharField(
         label=_("Password"),
         strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
-        help_text=password_validation.password_validators_help_text_html(),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'autocomplete': 'new-password'}),
+        help_text=_("""  
+            Su contraseña no puede ser muy similar a tu nombre de usuario.<br>
+            Su contraseña debe contener al menos 8 caracteres.<br>
+            Su no puede ser comunmente usada.<br>
+            Su contraseña no puede ser completamente numercia.<br><br>
+            """),
     )
     password2 = forms.CharField(
         label=_("Password confirmation"),
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'autocomplete': 'new-password'}),
         strip=False,
-        help_text=_("Enter the same password as before, for verification."),
+        help_text=_("Para verificar, introduzca la misma contraseña anterior."),
     )

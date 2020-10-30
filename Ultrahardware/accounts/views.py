@@ -12,7 +12,7 @@ def Signup(request):
             user = form.save()
 
             login(request, user)
-            return redirect("home:home_page")
+            return redirect("home")
     else:
         form = forms.Custom_UserCreationForm()
     context = {

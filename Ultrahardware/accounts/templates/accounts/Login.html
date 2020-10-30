@@ -10,6 +10,7 @@
     <form action="{% url 'accounts:login' %}" method="POST">
         {% csrf_token %}
         {{ form }}
+        <a href="{% url 'accounts:signup' %}" class="float-left">no tienes cuenta?</a>
         <input type="submit" name="action" value="Login" class="btn btn-info float-right" />
     </form>
 </div>

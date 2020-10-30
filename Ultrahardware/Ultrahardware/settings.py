@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["localhost", "ultrahardware.mooo.com", "andresgroseljduoc.pytho
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'contact.apps.ContactConfig',
     'products.apps.ProductsConfig',
     'cart.apps.CartConfig',

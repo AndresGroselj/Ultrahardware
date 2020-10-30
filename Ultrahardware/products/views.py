@@ -1,11 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import models
 from . import forms
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import redirect
 
 # Create your views here.
-
 
 def Product(request, _product_id):
     category_parents = models.Category_parent.objects.order_by("order")

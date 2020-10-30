@@ -4,6 +4,10 @@
 	padding: 0px 16px 0px 16px;
 }
 
+a.admin-text{
+	color: #32e0c4 !important;
+}
+
 #nav .nav-item a {
 	color: #222831;
 	font-size: 125%;

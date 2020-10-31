@@ -74,4 +74,34 @@ def Edit(request, _product_id):
             _instance.delete()
             
         return redirect("products:list")
+
+@permission_required("is_superuser")
+def Add(request):
+    if (request.method == "GET"):
+        data = {
+            "product_id": 0, 
+            "views": 0,
+            }
+        _form = forms.Product(initial=data)
+
+    elif (request.method == "POST"):
+        _instance = models.Product()
+        _form = forms.Product(request.POST, request.FILES)
+        
+        if (_form.is_valid()):
+            if (_form.cleaned_data['imagen_principal']):
+                _instance.imagen_principal = _form.cleaned_data["imagen_principal"]
+            _instance.category_id = _form.cleaned_data["category_id"]
+            _instance.nombre = _form.cleaned_data["nombre"]
+            _instance.precio = _form.cleaned_data["precio"]
+            _instance.stock = _form.cleaned_data["stock"]
+            _instance.description = _form.cleaned_data["description"]
+            _instance.specs = _form.cleaned_data["specs"]
+            _instance.save()
+            
+            return redirect("products:list")
+    context = {
+            "form": _form
+        }
+    return render(request, "products/AddProduct.html", context)
             

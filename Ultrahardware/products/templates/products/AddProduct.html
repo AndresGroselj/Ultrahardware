@@ -2,19 +2,19 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/login.css'%}">
+<link rel="stylesheet" href="{% static 'css/product_list.css'%}">
 {% endblock css %}
 
+{% block js %}
+{% endblock js %}
+
 {% block wrapper %}
-<div class="container">
-    <div class="card">
-        <form action="{% url 'accounts:login' %}" method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <a href="{% url 'accounts:signup' %}" class="float-left">no tienes cuenta?</a>
-            <input type="submit" name="action" value="Login" class="btn btn-info float-right" />
-        </form>
-    </div>
+<div>
+    <form action="{% url 'products:add' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" name="action" value="Add" />
+    </form>
     {% if form.errors %}
         {% for field in form %}
             {% for error in field.errors %}

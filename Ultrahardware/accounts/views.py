@@ -32,10 +32,10 @@ def Login(request):
                 return redirect("home")
     else:
         form = forms.Custom_AuthenticationForm()
-        context = {
-            "form": form
-        }
-        return render(request, "accounts/Login.html", context)
+    context = {
+        "form": form
+    }
+    return render(request, "accounts/Login.html", context)
 
 def Logout(request):
     logout(request)

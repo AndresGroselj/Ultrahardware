@@ -16,6 +16,7 @@
             <input type="submit">
         </form>
     </div>
+    <a href="{% url 'products:add' %}"><button class="btn btn-success">añadir producto</button></a>
     <ul>
         {% for product in products %}
         <li><a href="{{product.product_id}}"><span class="id">{{ product.product_id }}</span> {{ product.nombre }}</a></li>

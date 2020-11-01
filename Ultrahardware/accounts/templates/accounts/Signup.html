@@ -7,13 +7,16 @@
 
 {% block wrapper %}
 <div class="container">
-    <div class="card">
-        <form action="{% url 'accounts:signup' %}" method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" name="action" value="Crear Cuenta" class="btn btn-info float-right" />
-        </form>
+    <div class="row">
+        <div class="card col-12 col-md-6">
+            <form action="{% url 'accounts:signup' %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" name="action" value="Crear Cuenta" class="btn btn-info float-right" />
+            </form>
+        </div>
     </div>
+    
     <div>
     {% if form.errors %}
         {% for field in form %}

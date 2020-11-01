@@ -7,14 +7,17 @@
 
 {% block wrapper %}
 <div class="container">
-    <div class="card">
-        <form action="{% url 'accounts:login' %}" method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <a href="{% url 'accounts:signup' %}" class="float-left">no tienes cuenta?</a>
-            <input type="submit" name="action" value="Login" class="btn btn-info float-right" />
-        </form>
+    <div class="row">
+        <div class="card col-12 col-md-6">
+            <form action="{% url 'accounts:login' %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <a href="{% url 'accounts:signup' %}" class="float-left">no tienes cuenta?</a>
+                <input type="submit" name="action" value="Login" class="btn btn-info float-right" />
+            </form>
+        </div>
     </div>
+    
     {% if form.errors %}
         {% for field in form %}
             {% for error in field.errors %}

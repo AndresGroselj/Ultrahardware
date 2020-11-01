@@ -3,17 +3,18 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/product_list.css'%}">
+<link rel="stylesheet" href="{% static 'css/productForm.css'%}">
 {% endblock css %}
 
 {% block js %}
 {% endblock js %}
 
 {% block wrapper %}
-<div>
+<div class="container">
     <form action="{% url 'products:add' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" name="action" value="Add" />
+        <input type="submit" name="action" value="Add" class="btn btn-success"/>
     </form>
     {% if form.errors %}
         {% for field in form %}

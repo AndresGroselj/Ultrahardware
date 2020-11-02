@@ -2,7 +2,6 @@ from django import forms
 from . import models
 from django.utils.translation import gettext, gettext_lazy as _
 
-
 class Product(forms.Form):
     product_id = forms.IntegerField(
         label=_("id"),
@@ -26,22 +25,22 @@ class Product(forms.Form):
     )
     precio = forms.IntegerField(
         label=_("Precio"),
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'min': '1'})
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'min': '1', 'max': '2147483647'})
     )
     stock = forms.IntegerField(
         label=_("Stock"),
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'min': '0'})
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'min': '0', 'max': '2147483647'})
     )
     description = forms.CharField(
         label=_("Descipcion"),
         strip=False,
-        required = False,
+        required=False,
         widget=forms.Textarea(attrs={'class': 'form-control'}),
     )
     specs = forms.CharField(
         label=_("Especificaciones"),
         strip=False,
-        required = False,
+        required=False,
         widget=forms.Textarea(attrs={'class': 'form-control'}),
     )
     views = forms.IntegerField(

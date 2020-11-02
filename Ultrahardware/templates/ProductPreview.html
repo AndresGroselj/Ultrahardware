@@ -5,6 +5,7 @@
         <div id="product-preview-products">
             {% for product in products %}
             <div slot="{{ product.product_id }}">
+                <a href="javascript:hidePreview()" class="float-right">X</a>
                 <h4>{{ product.nombre }}</h4>
                 <img src="{{ product.imagen_principal.url }}" class="preview-image" alt="{{ product.nombre }}">
                 <div class="row align-self-end container">

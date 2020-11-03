@@ -1,0 +1,42 @@
+{% extends 'BaseTemplate.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login.css'%}">
+{% endblock css %}
+
+{% block wrapper %}
+<div class="container">
+    <div class="row">
+        <div class="card col-12 col-md-6">
+            <form action="{% url 'accounts:login' %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <a href="{% url 'accounts:signup' %}" class="float-left">no tienes cuenta?</a>
+                <input type="submit" name="action" value="Login" class="btn btn-info float-right" />
+            </form>
+        </div>
+    </div>
+    
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <strong>{{ error|escape }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>{{ error|escape }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock wrapper %}

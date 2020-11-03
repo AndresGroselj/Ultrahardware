@@ -25,12 +25,13 @@ SECRET_KEY = '&oe&iq0sdqis*u9sm^b3_by0e#buga(3j#&=*=y1ok$4!&iwq1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "ultrahardware.mooo.com"]
+ALLOWED_HOSTS = ["localhost", "ultrahardware.mooo.com", "andresgroseljduoc.pythonanywhere.com"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'contact.apps.ContactConfig',
     'products.apps.ProductsConfig',
     'cart.apps.CartConfig',
@@ -106,9 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 

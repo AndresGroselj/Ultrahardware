@@ -5,10 +5,11 @@
         <div id="product-preview-products">
             {% for product in products %}
             <div slot="{{ product.product_id }}">
+                <a href="javascript:hidePreview()" class="float-right">X</a>
                 <h4>{{ product.nombre }}</h4>
                 <img src="{{ product.imagen_principal.url }}" class="preview-image" alt="{{ product.nombre }}">
                 <div class="row align-self-end container">
-                <p class="col-lg-9 col-12">{{ product.description }}</p>
+                <p class="col-lg-9 col-12">{{ product.description|safe }}</p>
                 <div class="col-lg-3 col-12 row">
                     <div class="col-lg-12 col-6">
                         {% if product.FullPrice.0 %}

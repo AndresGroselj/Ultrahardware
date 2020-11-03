@@ -1,0 +1,40 @@
+{% extends 'BaseTemplate.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/product_list.css'%}">
+<link rel="stylesheet" href="{% static 'css/productForm.css'%}">
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block wrapper %}
+<div class="container">
+    <form action="{% url 'products:add' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" name="action" value="Add" class="btn btn-success"/>
+    </form>
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <strong>{{ error|escape }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>{{ error|escape }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock wrapper %}

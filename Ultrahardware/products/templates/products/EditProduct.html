@@ -1,0 +1,24 @@
+{% extends 'BaseTemplate.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/product_list.css'%}">
+<link rel="stylesheet" href="{% static 'css/productForm.css'%}">
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block wrapper %}
+<div class="container">
+    <h1 class="text-center">{{product.nombre}}</h1> <br>
+    <div>
+        <form action="{% url 'products:edit' _product_id=form.product_id.value %}" method="POST" enctype="multipart/form-data" onSubmit="return confirm('Esta seguro seguro?')">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" name="action" value="Update" class="btn btn-success"/>
+            <input type="submit" name="action" value="Delete" class="btn btn-danger"/>
+        </form>
+    </div>
+</div>
+{% endblock wrapper %}

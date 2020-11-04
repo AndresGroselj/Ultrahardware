@@ -19,6 +19,3 @@ def Location(request):
         "direccion": "Padre+Mariano+356,+Providencia,+Región+Metropolitana,Chile"
     }
     return render(request, "Location.html", context)
-
-def Redirect(request, _app, _name):
-    return redirect(f"{_app}:{_name}")

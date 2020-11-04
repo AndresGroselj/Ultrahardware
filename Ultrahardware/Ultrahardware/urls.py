@@ -31,10 +31,6 @@ urlpatterns = [
     path('contact/', contact_views.Contact, name="contact"),
     path('accounts/', include("accounts.urls")),
 
-    path('redirect/<_app>/<_name>', views.Redirect,),
-    path('redirect/accounts/password_reset_done', views.Redirect, name="password_reset_done"),
-    path('redirect/accounts/password_reset_complete', views.Redirect, name="password_reset_complete"),
-
 ]
 
 urlpatterns += staticfiles_urlpatterns()

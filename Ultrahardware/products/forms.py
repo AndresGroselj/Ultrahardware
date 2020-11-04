@@ -43,6 +43,10 @@ class Product(forms.Form):
         required=False,
         widget=forms.Textarea(attrs={'class': 'form-control'}),
     )
+    garantia = forms.IntegerField(
+        label=_("Garantia"),
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'min': '0', 'max': '120'})
+    )
     views = forms.IntegerField(
         label=_("views"),
         widget=forms.HiddenInput()

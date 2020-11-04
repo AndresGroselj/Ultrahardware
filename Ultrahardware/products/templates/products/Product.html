@@ -5,11 +5,75 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/sidebar.css'%}">
+    <link rel="stylesheet" href="{% static 'css/product.css'%}">
     <script src="{% static 'js/sidebar.js'%}"></script>
     <script src="{% static 'js/cart.js'%}"></script>
 {% endblock css %}
 
 
 {% block content %}
+<!-- Imagenes producto -->
+<div class="container">
+	<div class="card Border-img">
+	   <div class="container-fliud">
+		  <div class="wrapper row">
+			 <div class="preview col-md-6 ">
+				<div class="preview-pic tab-content">
+				   	<div class="tab-pane active" id="pic-principal"><img src="{{ product.imagen_principal.url }}" /></div>
+				   	{% for img in product.SecundaryImages %}
+					   <div class="tab-pane" id="pic-{{img.SecundaryImage_id}}"><img src="{{img.imagen.url}}" /></div>
+					{% endfor %}
+				</div>
+				<ul class="preview-thumbnail nav nav-tabs  ">
+				   <li class="active"><a data-target="#pic-principal" data-toggle="tab"><img src="{{ product.imagen_principal.url }}" class="Border-img-hover "/></a></li>
+				   	{% for img in product.SecundaryImages %}
+					   <li><a data-target="#pic-{{img.SecundaryImage_id}}" data-toggle="tab"><img src="{{img.imagen.url}}" class="Border-img-hover "/></a></li>
+					{% endfor %}
+				</ul>
+			 </div>
+			 <div class="details col-md-6" id="Informacion_producto">
+				<h2 class="product-title">
+					{{ product.nombre}}
+				</h2>
+				<div class="rating">
+				   <span class="review-no">Stock: {{ product.Stock}} </span>
+				</div>
+				<h4 class="price">Precio: <span>{{ product.formatedPrice}}</span></h4>
+				</h5>
+				<!-- Boton -->
+				<div class="action">
+				   <button class="add-to-cart btn btn-success" type="button">Agregar Carro</button>
+				</div>
+			 </div>
+		  </div>
+	   </div>
+	</div>
+ </div>
+ <!-- Tabs -->
+ <ul class="nav nav-tabs" id="tabs">
+	<li class="active nav-item"><a class="nav-link Border-img-hover" data-toggle="tab" href="#tab_descricion">Descripcion</a></li>
+	<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_ficha_tecnica">Ficha tecnica</a></li>
+	<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_garantia">Garantia</a></li>
+ </ul>
+
+ <div id="tab-content">
+	<!-- Descripcion -->
+	<div id="tab_descricion" class="tab-pane fade active show ">
+		<div class= "container-def">
+			{{ product.description|safe}}
+		</div>
+	</div>
+	<!-- ficha tecnica -->
+	<div id="tab_ficha_tecnica" class="tab-pane fade">
+	   {{ product.specs|safe}}
+	</div>
+	<!-- garantia -->
+	<div id="tab_garantia" class="tab-pane fade">
+	   <div class="card">
+			<h1>Garantia de {{ product.garantia }} meses</h1>
+	   </div>
+	</div>
+ </div>
 
 {% endblock content %}
+

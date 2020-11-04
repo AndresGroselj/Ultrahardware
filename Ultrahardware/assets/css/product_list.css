@@ -3,3 +3,9 @@ span.id{
     min-width: 2rem;
     display: inline-block;
 }
+#add{
+    margin: 1rem 0;
+}
+#search-form{
+    margin-top: 1rem;
+}

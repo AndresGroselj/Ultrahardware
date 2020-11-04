@@ -33,10 +33,10 @@ class Custom_UserCreationForm(UserCreationForm):
         strip=False,
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'autocomplete': 'new-password'}),
         help_text=_("""  
-            Su contraseña no puede ser muy similar a tu nombre de usuario.<br>
+            Su contraseña no puede ser muy similar a su nombre de usuario.<br>
             Su contraseña debe contener al menos 8 caracteres.<br>
-            Su no puede ser comunmente usada.<br>
-            Su contraseña no puede ser completamente numercia.<br><br>
+            Su contraseña no puede ser muy comun.<br>
+            Su contraseña no puede ser completamente numerica.<br><br>
             """),
     )
     password2 = forms.CharField(

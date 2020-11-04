@@ -36,6 +36,7 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True)
     specs = models.TextField(blank=True, null=True)
     views = models.IntegerField(default=0)
+    garantia = models.IntegerField(default=6)
 
     def __str__(self):
         return self.nombre
@@ -43,6 +44,14 @@ class Product(models.Model):
     @property
     def formatedPrice(self):
         return "${:,.0f}".format(self.precio)
+
+    @property
+    def CleanDescription(self):
+        if "<br>" in self.description:
+            _index = self.description.index("<br>")
+            return str(self.description)[0:_index]
+        else:
+            return self.description
     
     @property
     def FullPrice(self):
@@ -59,6 +68,29 @@ class Product(models.Model):
         originalPrice = "${:,.0f}".format(self.precio)
         totalPrice = "${:,.0f}".format(round(self.precio * (1 - discountFloat)))
         return (isDiscounted, discount, originalPrice, totalPrice)
+    
+    @property
+    def SecundaryImages(self):
+        _imagenes = SecundaryImage.objects.filter(product_id=self.product_id, active=True).order_by("order")
+        return _imagenes
+    
+    @property
+    def Stock(self):
+        if (self.stock > 20):
+            return "+20"
+        return self.stock
+
+
+class SecundaryImage(models.Model):
+    SecundaryImage_id = models.AutoField(primary_key=True)
+    product_id = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
+    imagen = models.ImageField(blank=True, null=True, default="productDefault.png")
+    active = models.BooleanField()
+    order = models.IntegerField(default=0)
+
+    def __str__(self):
+        return  str(self.SecundaryImage_id)
+    
 
 class Discount(models.Model):
     Discount_id = models.AutoField(primary_key=True)

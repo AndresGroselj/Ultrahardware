@@ -7,8 +7,10 @@ from django.contrib.auth.decorators import permission_required
 
 def Product(request, _product_id):
     category_parents = models.Category_parent.objects.order_by("order")
+    product = models.Product.objects.get(product_id = _product_id)
     context = {
-        "category_parents": category_parents
+        "category_parents": category_parents,
+        "product": product
     }
     return render(request, "products/Product.html", context)
 
@@ -48,6 +50,7 @@ def Edit(request, _product_id):
             "description": product.description,
             "specs": product.specs,
             "views": product.views,
+            "garantia": product.garantia,
             }
         form = forms.Product(initial=data)
         context = {
@@ -69,6 +72,7 @@ def Edit(request, _product_id):
                 _instance.stock = _form.cleaned_data["stock"]
                 _instance.description = _form.cleaned_data["description"]
                 _instance.specs = _form.cleaned_data["specs"]
+                _instance.garantia = _form.cleaned_data["garantia"]
                 _instance.save()
         elif (request.POST['action'] == "Delete"):
             _instance.delete()
@@ -97,6 +101,7 @@ def Add(request):
             _instance.stock = _form.cleaned_data["stock"]
             _instance.description = _form.cleaned_data["description"]
             _instance.specs = _form.cleaned_data["specs"]
+            _instance.garantia = _form.cleaned_data["garantia"]
             _instance.save()
             
             return redirect("products:list")

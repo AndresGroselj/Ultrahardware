@@ -14,24 +14,24 @@
 {% block content %}
 <!-- Imagenes producto -->
 <div class="container">
-	<div class="card">
+	<div class="card Border-img">
 	   <div class="container-fliud">
 		  <div class="wrapper row">
-			 <div class="preview col-md-6">
+			 <div class="preview col-md-6 ">
 				<div class="preview-pic tab-content">
-				   <div class="tab-pane active" id="pic-1"><img src="https://www.pcfactory.cl/public/foto/36555/1_500.jpg?t=1598018859" /></div>
+				   <div class="tab-pane active" id="pic-1"><img src="https://www.pcfactory.cl/public/foto/36555/1_500.jpg?t=1598018859"  /></div>
 				   <div class="tab-pane" id="pic-2"><img src="https://www.pcfactory.cl/public/foto/36555/2_500.jpg?t=1598018866" /></div>
 				   <div class="tab-pane" id="pic-3"><img src="https://www.pcfactory.cl/public/foto/36555/3_500.jpg?t=1598018877" /></div>
 				   <div class="tab-pane" id="pic-4"><img src="https://www.pcfactory.cl/public/foto/36555/4_500.jpg?t=1598018994" /></div>
 				</div>
-				<ul class="preview-thumbnail nav nav-tabs">
-				   <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/1_500.jpg?t=1598018859" /></a></li>
-				   <li><a data-target="#pic-2" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/2_500.jpg?t=1598018866" /></a></li>
-				   <li><a data-target="#pic-3" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/3_500.jpg?t=1598018877" /></a></li>
-				   <li><a data-target="#pic-4" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/4_500.jpg?t=1598018994" /></a></li>
+				<ul class="preview-thumbnail nav nav-tabs  ">
+				   <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/1_500.jpg?t=1598018859" class="Border-img-hover "/></a></li>
+				   <li><a data-target="#pic-2" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/2_500.jpg?t=1598018866" class="Border-img-hover " /></a></li>
+				   <li><a data-target="#pic-3" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/3_500.jpg?t=1598018877" class="Border-img-hover "/></a></li>
+				   <li><a data-target="#pic-4" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/4_500.jpg?t=1598018994" class="Border-img-hover "/></a></li>
 				</ul>
 			 </div>
-			 <div class="details col-md-6">
+			 <div class="details col-md-6" id="Informacion_producto">
 				<h2 class="product-title">
 				InWin® Gabinete ATX 805 Gold</h3>
 				<div class="rating">
@@ -40,9 +40,9 @@
 				<h4 class="price">Precio Efectivo: <span>$229.990</span></h4>
 				<h4 class="price">Precio Normal: <span>$242.090</span></h4>
 				</h5>
+				<!-- Boton -->
 				<div class="action">
-				   <button class="add-to-cart btn btn-default" type="button">Agregar Carro</button>
-				   <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+				   <button class="add-to-cart btn btn-success" type="button">Agregar Carro</button>
 				</div>
 			 </div>
 		  </div>
@@ -50,15 +50,15 @@
 	</div>
  </div>
  <!-- Tabs -->
- <ul class="nav nav-tabs">
-	<li class="active nav-item"><a class="nav-link" data-toggle="tab" href="#tab_descricion">Descripcion</a></li>
+ <ul class="nav nav-tabs" id="tabs">
+	<li class="active nav-item"><a class="nav-link Border-img-hover" data-toggle="tab" href="#tab_descricion">Descripcion</a></li>
 	<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_ficha_tecnica">Ficha tecnica</a></li>
 	<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_garantia">Garantia</a></li>
  </ul>
 
  <div class="tab-content">
 	<!-- Descripcion -->
-	<div id="tab_descricion" class="tab-pane fade active show">
+	<div id="tab_descricion" class="tab-pane fade active show ">
 		<div class= "container-def">
 			<div class="texto">
 				Gabinete ATX 805 Gold
@@ -104,3 +104,4 @@
  </div>
 
 {% endblock content %}
+

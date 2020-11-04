@@ -3,57 +3,29 @@ height: 25rem ;
 
 }
 
+/* nno borrar */
 .preview-thumbnail img {
 height: 5rem ;
+}
+
+
+.Border-img{
+    border: 2px solid rgb(107, 107, 107);
+
 
 }
 
-.maincontainer {
-box-sizing: content-box;
+.Border-img-hover:hover{
+    border: 2px solid black ;
     
+
 }
-.tab_ficha_tecnica{
-border-bottom-color:rgb(193, 193, 193);
-border-bottom-style:solid;
-border-bottom-width:1px;
-border-image-outset:0;
-border-image-repeat:stretch;
-border-image-slice:100%;
-border-image-source:none;
-border-image-width:1;
-border-left-color:rgb(193, 193, 193);
-border-left-style:solid;
-border-left-width:1px;
-border-right-color:rgb(193, 193, 193);
-border-right-style:solid;
-border-right-width:1px;
-border-top-color:rgb(205, 205, 204);
-border-top-style:solid;
-border-top-width:1px;
-box-sizing:content-box;
-color:rgb(33, 37, 41);
-display:block;
-font-family:"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
-font-size:16px;
-font-stretch:100%;
-font-style:normal;
-font-variant-caps:normal;
-font-variant-east-asian:normal;
-font-variant-ligatures:normal;
-font-variant-numeric:normal;
-font-weight:400;
-height:596px;
-line-height:16px;
-margin-bottom:0px;
-margin-left:0px;
-margin-right:0px;
-margin-top:0px;
-padding-bottom:15px;
-padding-left:15px;
-padding-right:15px;
-padding-top:15px;
-text-align:left;
-text-size-adjust:100%;
-vertical-align:baseline;
-width:868px;
--webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
+
+#Informacion_producto{
+    margin-top: 3rem;
+}
+
+#tabs{
+    margin-top: 1rem;
+}
+

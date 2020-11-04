@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from products import models as product_models
 
 # Create your views here.
@@ -19,3 +19,6 @@ def Location(request):
         "direccion": "Padre+Mariano+356,+Providencia,+Región+Metropolitana,Chile"
     }
     return render(request, "Location.html", context)
+
+def Redirect(request, _app, _name):
+    return redirect(f"{_app}:{_name}")

@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import gettext, gettext_lazy as _
-from django.contrib.auth.forms import UsernameField, AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import UsernameField, AuthenticationForm, UserCreationForm, PasswordResetForm
 from django.contrib.auth.models import User
 from django.contrib.auth import (
     authenticate, get_user_model, password_validation,
@@ -49,3 +49,10 @@ class Custom_UserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("email", "username",)
+
+class Custom_PasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(
+        label=_("Email"),
+        max_length=254,
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'autocomplete': 'email'})
+    )

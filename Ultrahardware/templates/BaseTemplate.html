@@ -45,20 +45,18 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{% static 'img/user_icon.png'%}" alt="" width="25rem">
                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     {% if user.is_authenticated %}
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{% url 'accounts:logout' %}">cerrar secion</a>
                             {% if request.user.is_superuser %}
                             <a class="dropdown-item admin-text" href="{% url 'admin:index' %}">Admin</a>
                             <a class="dropdown-item admin-text" href="{% url 'products:list' %}">Lista Productos</a>
                             {% endif %}
-                        </div>
                     {% else %}
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{% url 'accounts:login' %}">Iniciar secion</a>
-                            <a class="dropdown-item" href="{% url 'accounts:signup' %}">Crear cuenta</a>
-                        </div>
+                            <a class="dropdown-item" href="{% url 'accounts:signup' %}">Crear cuenta</a> 
                     {% endif %}
+                    </div>
                 </li>
             </ul>
             <div class="nav-item">

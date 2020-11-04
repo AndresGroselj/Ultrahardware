@@ -5,11 +5,103 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/sidebar.css'%}">
+    <link rel="stylesheet" href="{% static 'css/product.css'%}">
     <script src="{% static 'js/sidebar.js'%}"></script>
     <script src="{% static 'js/cart.js'%}"></script>
 {% endblock css %}
 
 
 {% block content %}
+<!-- Imagenes producto -->
+<div class="container">
+	<div class="card Border-img">
+	   <div class="container-fliud">
+		  <div class="wrapper row">
+			 <div class="preview col-md-6 ">
+				<div class="preview-pic tab-content">
+				   <div class="tab-pane active" id="pic-1"><img src="https://www.pcfactory.cl/public/foto/36555/1_500.jpg?t=1598018859"  /></div>
+				   <div class="tab-pane" id="pic-2"><img src="https://www.pcfactory.cl/public/foto/36555/2_500.jpg?t=1598018866" /></div>
+				   <div class="tab-pane" id="pic-3"><img src="https://www.pcfactory.cl/public/foto/36555/3_500.jpg?t=1598018877" /></div>
+				   <div class="tab-pane" id="pic-4"><img src="https://www.pcfactory.cl/public/foto/36555/4_500.jpg?t=1598018994" /></div>
+				</div>
+				<ul class="preview-thumbnail nav nav-tabs  ">
+				   <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/1_500.jpg?t=1598018859" class="Border-img-hover "/></a></li>
+				   <li><a data-target="#pic-2" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/2_500.jpg?t=1598018866" class="Border-img-hover " /></a></li>
+				   <li><a data-target="#pic-3" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/3_500.jpg?t=1598018877" class="Border-img-hover "/></a></li>
+				   <li><a data-target="#pic-4" data-toggle="tab"><img src="https://www.pcfactory.cl/public/foto/36555/4_500.jpg?t=1598018994" class="Border-img-hover "/></a></li>
+				</ul>
+			 </div>
+			 <div class="details col-md-6" id="Informacion_producto">
+				<h2 class="product-title">
+				InWin® Gabinete ATX 805 Gold</h3>
+				<div class="rating">
+				   <span class="review-no">Stock = 25 </span>
+				</div>
+				<h4 class="price">Precio Efectivo: <span>$229.990</span></h4>
+				<h4 class="price">Precio Normal: <span>$242.090</span></h4>
+				</h5>
+				<!-- Boton -->
+				<div class="action">
+				   <button class="add-to-cart btn btn-success" type="button">Agregar Carro</button>
+				</div>
+			 </div>
+		  </div>
+	   </div>
+	</div>
+ </div>
+ <!-- Tabs -->
+ <ul class="nav nav-tabs" id="tabs">
+	<li class="active nav-item"><a class="nav-link Border-img-hover" data-toggle="tab" href="#tab_descricion">Descripcion</a></li>
+	<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_ficha_tecnica">Ficha tecnica</a></li>
+	<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_garantia">Garantia</a></li>
+ </ul>
+
+ <div class="tab-content">
+	<!-- Descripcion -->
+	<div id="tab_descricion" class="tab-pane fade active show ">
+		<div class= "container-def">
+			<div class="texto">
+				Gabinete ATX 805 Gold
+				<p style="text-align: justify;">La perspectiva visual panorámica de 270 grados permite disfrutar de presentaciones para juegos y visuales dinámicas mientras el sistema se encuentra en ejecución.&nbsp;La elegante y brillante caja 805 está construida con aluminio de alta calidad con una línea elegante anodizada en los paneles de E/S superior y delantero.</p>
+				<p style="text-align: justify;">&nbsp;</p>
+				<p style="text-align: justify;">&nbsp;</p>
+				<p style="text-align: justify;"><img src="https://static.pcfactory.cl/imagenes/towers-1990-1.jpg" width="100%"></p>
+				<p><span style="font-size: 10pt;">&nbsp;</span></p>
+				<p><strong>&nbsp;Caracteristicas:&nbsp;</strong></p>
+				<ul>
+					<li>Modelo 805 Versión Tipo-C 805 Versión estándar</li>
+					<li>Color: Oro</li>
+					<li>Tipo de caja Media torre</li>
+					<li>Material de la caja Aluminio y vidrio templado</li>
+					<li>Compatibilidad de la placa base ATX, Micro-ATX, Mini-ITX</li>
+					<li>Ranuras de expansión PCI-E X 8</li>
+					<li>Compatible con tarjetas gráficas de última generación&nbsp;<br>Longitud: 320 mm máxima- Altura: 164 mm máxima<br>Puertos delanteros <br>2 x USB 2.0<br>1 x USB 3.0<br>1 x USB 3.1 Tipo-C<br>Audio HD <br>Bahías de unidad externas N/A<br>Bahías de unidad internas 2 x 2.5" / 3.5" , 4 x 2.5"&nbsp;</li>
+					<li>Compatibilidad con soluciones térmicas<br> 2 x Ventilador delantero de 120/140 mm<br>1 x Ventilador trasero de 120 mm<br>2 x Ventilador inferior de 120 mm<br>1 x Radiador delantero de 280 mm<br>1 x Radiador trasero de 120 mm</li>
+					<li>Compatible con disipador de CPU- Superficie de molde de CPU a la altura del panel lateral: 156 mm máxima</li>
+					<li>Compatibilidad con fuentes de alimentación PSII: ATX12V y EPS 12V- Longitud: 220 mm máxima</li>
+					<li>Dimensiones del producto(AL x AN x FO) 455 x 205 x 458mm</li>
+					<li>Dimensiones del producto(AL x AN x FO)con tornillo y altura de asa&nbsp; 476 x 222 x 467mm</li>
+					<li>Dimensiones del paquete(AL x AN x FO) 315 x 570 x 620mm</li>
+					<li>Peso neto 6.85kg<br>Peso bruto 9.15kg</li>
+				</ul>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+			</div>
+		</div>
+	</div>
+	<!-- ficha tecnica -->
+	<div id="tab_ficha_tecnica" class="tab-pane fade">
+	   <h3>Menu 1</h3>
+	   <p>Some content in menu 1.</p>
+	</div>
+	<!-- garantia -->
+	<div id="tab_garantia" class="tab-pane fade">
+	   <h3>Menu 2</h3>
+	   <p>Some content in menu 2.</p>
+	</div>
+ </div>
 
 {% endblock content %}
+

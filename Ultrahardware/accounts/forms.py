@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import gettext, gettext_lazy as _
-from django.contrib.auth.forms import UsernameField, AuthenticationForm, UserCreationForm, PasswordResetForm
+from django.contrib.auth.forms import UsernameField, AuthenticationForm, UserCreationForm, PasswordResetForm, SetPasswordForm
 from django.contrib.auth.models import User
 from django.contrib.auth import (
     authenticate, get_user_model, password_validation,
@@ -33,10 +33,10 @@ class Custom_UserCreationForm(UserCreationForm):
         strip=False,
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'autocomplete': 'new-password'}),
         help_text=_("""  
-            Su contraseña no puede ser muy similar a tu nombre de usuario.<br>
+            Su contraseña no puede ser muy similar a su nombre de usuario.<br>
             Su contraseña debe contener al menos 8 caracteres.<br>
-            Su no puede ser comunmente usada.<br>
-            Su contraseña no puede ser completamente numercia.<br><br>
+            Su contraseña no puede ser muy comun.<br>
+            Su contraseña no puede ser completamente numerica.<br><br>
             """),
     )
     password2 = forms.CharField(
@@ -55,4 +55,22 @@ class Custom_PasswordResetForm(PasswordResetForm):
         label=_("Email"),
         max_length=254,
         widget=forms.EmailInput(attrs={'class': 'form-control', 'autocomplete': 'email'})
+    )
+
+class Custom_SetPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label=_("New password"),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'autocomplete': 'new-password'}),
+        strip=False,
+        help_text=_("""  
+            Su contraseña no puede ser muy similar a su nombre de usuario.<br>
+            Su contraseña debe contener al menos 8 caracteres.<br>
+            Su contraseña no puede ser muy comun.<br>
+            Su contraseña no puede ser completamente numerica.<br><br>
+            """),
+    )
+    new_password2 = forms.CharField(
+        label=_("New password confirmation"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'autocomplete': 'new-password'}),
     )

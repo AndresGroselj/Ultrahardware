@@ -79,7 +79,39 @@ class Product(models.Model):
         if (self.stock > 20):
             return "+20"
         return self.stock
+    
+    @property
+    def Price(self):
+        if self.HasDiscount:
+            descuento = (1 - (self.Dicount / 100))
+            return "${:,.0f}".format(round(self.precio * descuento))
+        return "${:,.0f}".format(self.precio)
+    
+    @property
+    def PriceBeforeDiscount(self):
+        return "${:,.0f}".format(self.precio)
+    
+    @property
+    def HasDiscount(self):
+        descuentos = Discount.objects.filter(product_id=self.product_id)
+        isDiscounted = False
+        for d in descuentos:
+            if d.startDate <= date.today() <= d.endDate:
+                isDiscounted = True
+                break
+        return isDiscounted
 
+    @property
+    def Dicount(self):
+        descuentos = Discount.objects.filter(product_id=self.product_id)
+        discount = 0
+        for d in descuentos:
+            if d.startDate <= date.today() <= d.endDate:
+                discount = d.discount
+                break
+        return discount
+    
+    
 
 class SecundaryImage(models.Model):
     SecundaryImage_id = models.AutoField(primary_key=True)

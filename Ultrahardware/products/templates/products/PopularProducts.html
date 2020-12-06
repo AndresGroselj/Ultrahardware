@@ -21,5 +21,9 @@
 
 {% block content %}
 <!-- productos -->
-{% include "ProductCards.html" %}
+<div class="container">
+    <div class="row justify-content-center" id="cardGallery">
+        {% include "ProductCards.html" %}
+    </div>
+</div>
 {% endblock content %}

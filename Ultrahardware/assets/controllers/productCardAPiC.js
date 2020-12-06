@@ -20,12 +20,11 @@ function GetProductList(){
 function AppendProductCards(products){
     console.log(products);
     var cardContainer = $("#cardGallery");
-    //cardContainer.empty();
+    cardContainer.empty();
 
     $.each(products, function(i, product){
         console.log(product);
         var card = GenerateCard(product)
-
         cardContainer.append(card);
     });
 
@@ -33,21 +32,6 @@ function AppendProductCards(products){
 }
 
 function GenerateCard(product){
-
-    /*
-    <a href="javascript:displayPreview(9)" class="product-space col-xl-3 col-md-4 col-sm-6 col-6">
-        <div class="card browse-result">
-            <img src="/media/1_511.jpg" class="card-img-top" alt="Huawei p40 Black">
-            <div class="card-body">
-                <h5 class="card-title">Huawei p40 Black</h5>
-                
-                    <div class="discount"><span>$399,990</span> 25%</div>
-                
-                <h6>$299,992</h6>
-            </div>
-        </div>
-    </a>
-    */
     var hyperlink = $("<a></a>");
     hyperlink.addClass("product-space col-xl-3 col-md-4 col-sm-6 col-6")
     hyperlink.attr("href", `javascript:displayPreview(${product['product_id']})`)

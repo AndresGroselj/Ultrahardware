@@ -1,3 +1,5 @@
+var productLik = "/product/"
+
 $(document).ready(function(){
     GetProductList();
 });
@@ -6,9 +8,11 @@ function GetProductList(){
     $.get({
         url: "/api/productcard/",
         dataType: 'json',
-        success: function(productList){
-            var jsonlist = $.parseJSON(JSON.stringify(productList));
-            AppendProductCards(productList["results"]);
+        success: function(response){
+            var productList = response["results"]
+            console.log(productList)
+            AppendProductCards(productList);
+            AppendProductPreview(productList);
         },
         error: function(error){
             console.error("Error en el servicio de listar productos");
@@ -17,8 +21,8 @@ function GetProductList(){
     });
 }
 
+//#region cards
 function AppendProductCards(products){
-    console.log(products);
     var cardContainer = $("#cardGallery");
     cardContainer.empty();
 
@@ -81,3 +85,83 @@ function AppendDummys(container){
         container.append(dummy);
       } 
 }
+
+//#endregion
+
+//#region previews
+function AppendProductPreview(products){
+    var previewContainer = $("#product-preview-products");
+    previewContainer.empty();
+
+    $.each(products, function(i, product){
+        var preview = GeneratePreview(product)
+        previewContainer.append(preview);
+    });
+
+    AppendDummys(cardContainer);
+}
+function GeneratePreview(product){
+
+    var preview = $("<div></div>");
+    preview.addClass("d-block");
+    preview.attr("slot", product["product_id"]);
+
+    var XButton = $("<a href='javascript:hidePreview()' class='float-right'>X</a>");
+
+    var title = $("<h4></hh4>");
+    title.text(product["nombre"]);
+
+    var Hyperlink = $("<a></a>");
+    Hyperlink.attr("href", `${productLik}${product["product_id"]}/`);
+
+    var productImg = $("<img>");
+    productImg.addClass("preview-image");
+    productImg.attr("src", product['imagen_principal']);
+    productImg.attr("alt", product['nombre']);
+
+    var productFooter = $("<div></div>")
+    productFooter.addClass("row align-self-end container");
+
+    var description = $("<p></p>");
+    description.addClass("col-lg-9 col-12");
+    description.text(product["description"]);
+    
+    var priceContainer = $("<div></div>");
+    priceContainer.addClass("col-lg-12 col-6");
+
+    if (product['HasDiscount']){
+        var discount = $("<div></div>");
+        discount.addClass("discount");
+        var originalPrice = $("<span></span>"); //contenedor prcio original para usar en css
+        originalPrice.text(product['PriceBeforeDiscount']);
+        discount.append(originalPrice);
+        //% descuento
+        discount.append(` ${product['Dicount']}%`);
+    }
+
+    var price = $("<span></span>")
+    price.text(product["Price"])
+    
+    var button = $("<button></button>");
+    button.addClass("btn btn-success col-lg-12 col-6");
+    button.attr("onclick", `AddToCart('${product.product_id}', 1)`)
+
+    var previewImg = $("<img>")
+    previewImg.attr("src", "/static/img/cart.png")
+    previewImg.attr("alt", "add to cart")
+
+    button.append(previewImg);
+    if (product['HasDiscount']) priceContainer.append(discount);
+    priceContainer.append(price);
+    productFooter.append(description);
+    productFooter.append(priceContainer);
+    productFooter.append(button);
+    Hyperlink.append(productImg);
+    preview.append(XButton);
+    preview.append(title);
+    preview.append(Hyperlink);
+    preview.append(productFooter);
+
+    return preview;
+}
+//#endregion

@@ -18,6 +18,13 @@
 {% endblock js %}
 
 {% block bodyTop %}
+<div id="product-preview" class="d-none">
+    <div id="product-preview-background"></div>
+    <div id="product-preview-card" class="card col-lg-6 col-sm-10 col-12">
+        <div id="product-preview-products">
+        </div>
+    </div>
+</div>
 {% include "ProductPreview.html" %}
 {% endblock bodyTop %}
 
@@ -26,8 +33,6 @@
     {% include "Carousel.html" %}
     <!-- productos -->
     <div class="container">
-        <div class="row justify-content-center" id="cardGallery">
-            {% include "ProductCards.html" %}
-        </div>
+        <div class="row justify-content-center" id="cardGallery"></div>
     </div>
 {% endblock content %}

@@ -124,7 +124,7 @@ function GeneratePreview(product){
 
     var description = $("<p></p>");
     description.addClass("col-lg-9 col-12");
-    description.text(product["description"]);
+    description.append(product["CleanDescription"]);
     
     var priceContainer = $("<div></div>");
     priceContainer.addClass("col-lg-12 col-6");

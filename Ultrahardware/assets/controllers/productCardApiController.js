@@ -97,8 +97,6 @@ function AppendProductPreview(products){
         var preview = GeneratePreview(product)
         previewContainer.append(preview);
     });
-
-    AppendDummys(cardContainer);
 }
 function GeneratePreview(product){
 

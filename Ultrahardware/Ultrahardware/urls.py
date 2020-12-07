@@ -14,7 +14,7 @@ router = routers.DefaultRouter()
 router.register(r'productcard', api_products_views.ProductCardViewSet)
 
 urlpatterns = [
-    path('', views.Home, name="home"),
+    path('', views.Index, name="home"),
     path('admin/', admin.site.urls),
     path('location/', views.Location, name="location"),
     path('cart/', include("cart.urls")),

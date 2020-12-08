@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'pwa',
 
     'django.contrib.sites',
     'allauth',
@@ -166,3 +167,5 @@ REST_FRAMEWORK = {
 }
 
 LOGIN_REDIRECT_URL = "/"
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js')

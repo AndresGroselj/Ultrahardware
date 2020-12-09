@@ -10,3 +10,7 @@ div.card input[type="submit"]{
 div.card form a{
     margin-top: 1rem;
 }
+
+img.socialImage{
+    height: 5rem;
+}

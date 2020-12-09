@@ -13,13 +13,23 @@
 <script src="{% static 'js/sidebar.js'%}"></script>
 <script src="{% static 'js/productPreview.js'%}"></script>
 <script src="{% static 'js/cart.js'%}"></script>
+
+<script src="{% static 'controllers/productCardApiController.js'%}"></script>
 {% endblock js %}
 
 {% block bodyTop %}
-{% include "ProductPreview.html" %}
+<div id="product-preview" class="d-none">
+    <div id="product-preview-background"></div>
+    <div id="product-preview-card" class="card col-lg-6 col-sm-10 col-12">
+        <div id="product-preview-products">
+        </div>
+    </div>
+</div>
 {% endblock bodyTop %}
 
 {% block content %}
 <!-- productos -->
-{% include "ProductCards.html" %}
+<div class="container">
+    <div class="row justify-content-center" id="cardGallery"></div>
+</div>
 {% endblock content %}

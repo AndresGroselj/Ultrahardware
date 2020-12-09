@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["localhost", "ultrahardware.mooo.com", "andresgroseljduoc.pytho
 # Application definition
 
 INSTALLED_APPS = [
+    'api_products.apps.ApiProductsConfig',
     'accounts.apps.AccountsConfig',
     'contact.apps.ContactConfig',
     'products.apps.ProductsConfig',
@@ -41,7 +42,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'pwa',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,6 +84,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Ultrahardware.wsgi.application'
 
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -141,3 +160,45 @@ EMAIL_PORT = "587"
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "andres.groselj.devtest@gmail.com"
 EMAIL_HOST_PASSWORD = "YstChaTiCTIOnOnGesiTERmaTiCamE"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+LOGIN_REDIRECT_URL = "/"
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js')
+
+
+#configuracion del manifest PWA
+PWA_APP_NAME = 'Ultrahardware'
+PWA_APP_DESCRIPTION = "Tienda de elecronica al mejor precio con sede en la region metropolitana"
+PWA_APP_THEME_COLOR = '#32e0c4'
+PWA_APP_BACKGROUND_COLOR = '#eeeeee'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/img/logo_160x160.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/img/logo_160x160.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/img/splash_640x1136.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'es'
+PWA_APP_DEBUG_MODE = True

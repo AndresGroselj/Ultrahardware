@@ -15,6 +15,7 @@ router.register(r'productcard', api_products_views.ProductCardViewSet)
 
 urlpatterns = [
     path('', views.Index, name="home"),
+    path('', include('pwa.urls')),
     path('admin/', admin.site.urls),
     path('location/', views.Location, name="location"),
     path('cart/', include("cart.urls")),

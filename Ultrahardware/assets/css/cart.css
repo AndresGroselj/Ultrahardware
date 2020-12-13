@@ -3,7 +3,7 @@
 }
 
 #cart-products .product-image{
-	height: 3.5rem;
+	height: 5rem;
 }
 
 #cart-products .card{
@@ -32,4 +32,13 @@
 
 .product-item .ammount input{
 	max-width: 5rem;
+}
+
+.descuento{
+	color: #f00;
+}
+
+.removeButton{
+	height: 2rem;
+	margin-right: 10px;
 }

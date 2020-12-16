@@ -84,12 +84,12 @@ class Product(models.Model):
     def Price(self):
         if self.HasDiscount:
             descuento = (1 - (self.Dicount / 100))
-            return "${:,.0f}".format(round(self.precio * descuento))
-        return "${:,.0f}".format(self.precio)
+            return (round(self.precio * descuento))
+        return self.precio
     
     @property
     def PriceBeforeDiscount(self):
-        return "${:,.0f}".format(self.precio)
+        return self.precio
     
     @property
     def HasDiscount(self):

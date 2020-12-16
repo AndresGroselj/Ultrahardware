@@ -55,13 +55,13 @@ function GenerateCard(product){
     nombre.text(product['nombre']);
 
     var price = $("<h6></h6>");
-    price.text(product['Price']);
+    price.text(formatCurrency(product['Price']));
 
     if (product['HasDiscount']){
         var discount = $("<div></div>");
         discount.addClass("discount");
         var originalPrice = $("<span></span>"); //contenedor prcio original para usar en css
-        originalPrice.text(product['PriceBeforeDiscount']);
+        originalPrice.text(formatCurrency(product['PriceBeforeDiscount']));
         discount.append(originalPrice);
         //% descuento
         discount.append(` ${product['Dicount']}%`);
@@ -125,20 +125,20 @@ function GeneratePreview(product){
     description.append(product["CleanDescription"]);
     
     var priceContainer = $("<div></div>");
-    priceContainer.addClass("col-lg-12 col-6");
+    priceContainer.addClass("col-lg-3 col-6");
 
     if (product['HasDiscount']){
         var discount = $("<div></div>");
         discount.addClass("discount");
         var originalPrice = $("<span></span>"); //contenedor prcio original para usar en css
-        originalPrice.text(product['PriceBeforeDiscount']);
+        originalPrice.text(formatCurrency(product['PriceBeforeDiscount']));
         discount.append(originalPrice);
         //% descuento
         discount.append(` ${product['Dicount']}%`);
     }
 
     var price = $("<span></span>")
-    price.text(product["Price"])
+    price.text(formatCurrency(product["Price"]))
     
     var button = $("<button></button>");
     button.addClass("btn btn-success col-lg-12 col-6");
@@ -151,9 +151,9 @@ function GeneratePreview(product){
     button.append(previewImg);
     if (product['HasDiscount']) priceContainer.append(discount);
     priceContainer.append(price);
+    priceContainer.append(button);
     productFooter.append(description);
     productFooter.append(priceContainer);
-    productFooter.append(button);
     Hyperlink.append(productImg);
     preview.append(XButton);
     preview.append(title);

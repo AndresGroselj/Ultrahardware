@@ -1,19 +1,24 @@
+var container = null;
+var infoProducts = [];
+
 $(document).ready(function(){
-    PrintProducts();
+    container = $("#cart-products");
+    getProducts();
 });
 
-function PrintProducts(){
-    var container = $("#cart-products");
+function getProducts(){
+    emptyContainer();
     var productsInCart = GetCart();
     console.log(productsInCart);
     $.each(productsInCart, function(productId, quantity){
-        console.log(`${productId} ${quantity}`);
+        //console.log(`${productId} ${quantity}`);
         $.get({
             url: `/api/productcard/${productId}/`,
             dataType: 'json',
             success: function(response){
-                var card = CreateProductCard(response, quantity);
-                appendCard(card, container);
+                console.log(response);
+                infoProducts[response["product_id"]] = response; 
+                infoProducts[response["product_id"]]["quantity"] = quantity;
             },
             error: function(error){
                 console.error("Error en el servicio de listar productos del carrito");
@@ -49,6 +54,15 @@ function CreateProductCard(product, quantity){
     return card;
 }
 
-function appendCard(card, container){
+function appendCard(card){
     container.append(card);
+}
+
+function emptyContainer(){
+    container.empty();
+}
+
+function removeProduct(id){
+    RemoveFromCart(id);
+    PrintProducts()
 }

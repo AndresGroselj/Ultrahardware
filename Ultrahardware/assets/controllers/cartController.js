@@ -1,15 +1,16 @@
 var container = null;
+var productsInCart = {};
+var keys = [];
 var infoProducts = {};
 
 $(document).ready(function(){
+    productsInCart = GetCart();
+    keys = Object.keys(productsInCart);
     container = $("#cart-products");
-    getProducts();
-    PrintProducts();
+    getProductsInfo();
 });
 
-function getProducts(){
-    emptyContainer();
-    var productsInCart = GetCart();
+function getProductsInfo(){
     console.log(productsInCart);
     $.each(productsInCart, function(productId, quantity){
         //console.log(`${productId} ${quantity}`);
@@ -17,9 +18,10 @@ function getProducts(){
             url: `/api/productcard/${productId}/`,
             dataType: 'json',
             success: function(response){
-                //console.log(response);
                 infoProducts[response["product_id"]] = response; 
                 infoProducts[response["product_id"]]["quantity"] = quantity;
+                
+                tryPrinting();
             },
             error: function(error){
                 console.error("Error en el servicio de listar productos del carrito");
@@ -29,7 +31,9 @@ function getProducts(){
     });
 }
 
-function PrintProducts(){
+function printProducts(){
+    console.log("printing cards")
+    emptyContainer();
     $.each(infoProducts, function(index, product){
         var card = CreateProductCard(product)
         appendCard(card);
@@ -80,5 +84,19 @@ function emptyContainer(){
 
 function removeProduct(id){
     RemoveFromCart(id);
-    PrintProducts()
+    printProducts()
+}
+
+// checkea que ya se tenga toda la informacion de los productos y si es asi, los imprime
+function tryPrinting(){ 
+    var hasAll = true;
+    for (i = 0; i < keys.length; i++){
+        if(!infoProducts.hasOwnProperty(keys[i])){
+            hasAll = false;
+            break;
+        };
+    };
+    if (hasAll){
+        printProducts();
+    };
 }

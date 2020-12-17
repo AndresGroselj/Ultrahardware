@@ -28,6 +28,7 @@
 .product-item{
 	padding: 3px;
 	font-size: large;
+	margin-bottom: 0.5rem;
 }
 
 .product-item .ammount input{

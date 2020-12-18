@@ -49,8 +49,8 @@ function CreateProductCard(product){
             </div>
             <div class="col-lg-10 col-9">
                 <div class="row">
-                    <div class="col-lg-6 col-10 mr-auto">Telefono Samsung</div>
-                    <img src="/static/img/red_trashcan.png" alt="X" class="removeButton">
+                    <div class="col-11 mr-auto nombre-producto"> Samsung® Smartphone Galaxy A10s Octa Core 32GB 6.2" 4G Android Negro Movistar QR </div>
+                    <img src="/static/img/red_trashcan.png" alt="X" class="removeProduct" id="removeProduct-1">
                 </div>
                 <div class="row justify-content-between">
                     <div class="col-lg-5 col-9 text-left"><span>$500.000</span> <span class="descuento">descuento</span></div>
@@ -77,8 +77,30 @@ function CreateProductCard(product){
     image.addClass("product-image");
     image.attr("src", product["imagen_principal"]);
 
+    var infoContainer = $("<div></div>");
+    infoContainer.addClass("col-lg-10 col-9");
+
+    var topRow = $("<div></div>");
+    topRow.addClass("row");
+
+    var nombre = $("<div></div>");
+    nombre.addClass("col-11 mr-auto");
+    nombre.text(product["nombre"]);
+
+    var removeProduct = $("<img></img>");
+    removeProduct.addClass("removeProduct")
+    removeProduct.attr("src", "/static/img/red_trashcan.png");
+    removeProduct.attr("alt", "X");
+    removeProduct.attr("id", "removeProduct-" + product["product_id"]);
+
+
+    topRow.append(nombre);
+    topRow.append(removeProduct);
+    infoContainer.append(topRow);
+    //infoContainer.append(bottomRow);
     imageContainer.append(image);
     row.append(imageContainer);
+    row.append(infoContainer);
     card.append(row);
 
     return card;

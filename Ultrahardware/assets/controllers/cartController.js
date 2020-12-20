@@ -53,8 +53,8 @@ function CreateProductCard(product){
                     <img src="/static/img/red_trashcan.png" alt="X" class="removeProduct" id="removeProduct-1">
                 </div>
                 <div class="row justify-content-between">
-                    <div class="col-lg-5 col-9 text-left"><span>$500.000</span> <span class="descuento">descuento</span></div>
-                    <div class="col-lg-2 col-3 ammount">
+                    <div class="col-lg-5 col-9 text-left">$500.000<span class="descuento"> descuento</span></div>
+                    <div class="col-lg-2 col-3 quantity">
                         <input type="number" class="form-control" value="2" max="20" min="1" id="product-quantity-1">
                     </div>
                     <div class="col-lg-3 col-9 text-right" id="product-total-1">$1.000.000</div>
@@ -93,11 +93,41 @@ function CreateProductCard(product){
     removeProduct.attr("alt", "X");
     removeProduct.attr("id", "removeProduct-" + product["product_id"]);
 
+    var bottomRow = $("<div></div>");
+    bottomRow.addClass("row justify-content-between");
+
+    var basePrice = $("<div></div>");
+    basePrice.addClass("col-lg-5 col-9 text-left");
+    basePrice.text(formatCurrency(product["Price"]));
+    if (product["HasDiscount"]){
+        var descuento = $("<span> descuento</span>");
+        descuento.addClass("descuento");
+        basePrice.append(descuento);
+    }
+
+    var quantityContainer = $("<div></div>");
+    quantityContainer.addClass("col-lg-2 col-3 quantity");
+    var quantityInput = $("<input>");
+    quantityInput.addClass("form-control");
+    quantityInput.attr("id", "product-quantity-" + product["product_id"]);
+    quantityInput.attr("type", "number");
+    quantityInput.attr("value", product["quantity"]);
+    quantityInput.attr("min", "1");
+    quantityInput.attr("max", "20");
+    quantityContainer.append(quantityInput);
+
+    var total = $("<div></div>");
+    total.addClass("col-lg-3 col-9 text-right");
+    total.attr("id", "product-total-" + product["product_id"]);
+    total.text(formatCurrency(product["Price"] * product["quantity"]))
 
     topRow.append(nombre);
     topRow.append(removeProduct);
+    bottomRow.append(basePrice);
+    bottomRow.append(quantityContainer);
+    bottomRow.append(total);
     infoContainer.append(topRow);
-    //infoContainer.append(bottomRow);
+    infoContainer.append(bottomRow);
     imageContainer.append(image);
     row.append(imageContainer);
     row.append(infoContainer);

@@ -4,8 +4,7 @@ var keys = [];
 var infoProducts = {};
 
 $(document).ready(function(){
-    productsInCart = GetCart();
-    keys = Object.keys(productsInCart);
+    updateProductsInCart();
     container = $("#cart-products");
     getProductsInfo();
 });
@@ -13,7 +12,6 @@ $(document).ready(function(){
 function getProductsInfo(){
     console.log(productsInCart);
     $.each(productsInCart, function(productId, quantity){
-        //console.log(`${productId} ${quantity}`);
         $.get({
             url: `/api/productcard/${productId}/`,
             dataType: 'json',
@@ -37,33 +35,12 @@ function printProducts(){
     $.each(infoProducts, function(index, product){
         var card = CreateProductCard(product)
         appendCard(card);
+        addEventsToCard(index);
     });
+    calculateTotal();
 }
 
 function CreateProductCard(product){
-    /*
-    <div class="product-item card" id="product-1">
-        <div class="row">
-            <div class="col-lg-2 col-3">
-                <img src="https://www.pcfactory.cl/public/foto/38367/1_500.jpg?t=1597845348" alt="telefono-samsung" class="product-image">
-            </div>
-            <div class="col-lg-10 col-9">
-                <div class="row">
-                    <div class="col-11 mr-auto nombre-producto"> Samsung® Smartphone Galaxy A10s Octa Core 32GB 6.2" 4G Android Negro Movistar QR </div>
-                    <img src="/static/img/red_trashcan.png" alt="X" class="removeProduct" id="removeProduct-1">
-                </div>
-                <div class="row justify-content-between">
-                    <div class="col-lg-5 col-9 text-left">$500.000<span class="descuento"> descuento</span></div>
-                    <div class="col-lg-2 col-3 quantity">
-                        <input type="number" class="form-control" value="2" max="20" min="1" id="product-quantity-1">
-                    </div>
-                    <div class="col-lg-3 col-9 text-right" id="product-total-1">$1.000.000</div>
-                </div>
-            </div> 
-        </div>
-    </div>
-    */
-
     var card = $("<div></div>");
     card.addClass("product-item card");
 
@@ -141,13 +118,10 @@ function appendCard(card){
 }
 
 function emptyContainer(){
-    //container.empty();
+    container.empty();
 }
 
-function removeProduct(id){
-    RemoveFromCart(id);
-    printProducts()
-}
+
 
 // checkea que ya se tenga toda la informacion de los productos y si es asi, los imprime
 function tryPrinting(){ 
@@ -161,4 +135,32 @@ function tryPrinting(){
     if (hasAll){
         printProducts();
     };
+}
+
+function removeProduct(id){
+    RemoveFromCart(id);
+    delete infoProducts[id];
+    updateProductsInCart();
+    printProducts();
+}
+
+function addEventsToCard(id){
+    $("#removeProduct-" + id).click(function(){
+        console.log(`removing product [${id}] ${infoProducts[id]["nombre"]}`);
+        removeProduct(id)
+    });
+}
+
+function calculateTotal(){
+    var total = 0;
+    for (i = 0; i < keys.length; i++){
+        var info = infoProducts[keys[i]];
+        total += info["Price"] * info["quantity"];
+    };
+    $("#total").text(formatCurrency(total));
+}
+
+function updateProductsInCart(){
+    productsInCart = GetCart();
+    keys = Object.keys(productsInCart);
 }

@@ -13,7 +13,7 @@ function GetCart(){
 }
 
 function AddToCart(product_id, ammount){
-    var cart_list = GetCart()
+    var cart_list = GetCart();
 
     cart_list[product_id] = ammount;
     Cookies.set('cart', JSON.stringify(cart_list), {"SameSite":"lax"});
@@ -23,15 +23,17 @@ function AddToCart(product_id, ammount){
 }
 
 function RemoveFromCart(product_id){
-    var cart_list = GetCart()
+    var cart_list = GetCart();
     
-    delete cart_list[product_id]
+    delete cart_list[product_id];
     Cookies.set('cart', JSON.stringify(cart_list), {"SameSite":"lax"});
     console.log((Cookies.get('cart')));
+
+    UpdateNavCart();
 }
 
 function UpdateNavCart(){
-    var cart_list = GetCart()
+    var cart_list = GetCart();
 
     document.getElementById("cart-number").innerHTML = Object.keys(cart_list).length;
 }

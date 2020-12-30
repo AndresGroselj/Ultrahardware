@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 function getProductsInfo(){
     console.log(productsInCart);
-    if (cartLength() > 0)
+    if (keys.length > 0)
         $.each(productsInCart, function(productId, quantity){
             $.get({
                 url: `/api/productcard/${productId}/`,
@@ -152,16 +152,31 @@ function removeProduct(id){
     RemoveFromCart(id);
     delete infoProducts[id];
     updateProductsInCart();
-    if (cartLength() > 0)
+    if (keys.length > 0)
         printProducts();
     else
         printNoProductCard();
 }
 
 function addEventsToCard(id){
+    maxQuanity = $("#product-quantity-" + id).attr("max");
+
     $("#removeProduct-" + id).click(function(){
         console.log(`removing product [${id}] ${infoProducts[id]["nombre"]}`);
         removeProduct(id)
+    });
+    $("#product-quantity-" + id).bind('keyup mouseup', function(){
+        var value = parseInt($("#product-quantity-" + id).val());
+        if (isNaN(value))
+            return;
+        if (infoProducts[id]["quantity"] == value)
+            return;
+        if (value > maxQuanity){
+            value = maxQuanity;
+            $("#product-quantity-" + id).val(maxQuanity)
+        }
+
+        updateProductQuantity(id, value);
     });
 }
 
@@ -179,6 +194,12 @@ function updateProductsInCart(){
     keys = Object.keys(productsInCart);
 }
 
-function cartLength(){
-    return Object.keys(productsInCart).length;
+function updateProductQuantity(id, quantity){
+    console.log(`changing quantity of [${id}] ${infoProducts[id]["nombre"]}`);
+    AddToCart(id, quantity);
+    updateProductsInCart();
+    infoProducts[id]["quantity"] = quantity; 
+
+    $("#product-total-" + id).text(formatCurrency(infoProducts[id]["Price"] * quantity))
+    calculateTotal();
 }

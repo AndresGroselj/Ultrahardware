@@ -11,22 +11,35 @@ $(document).ready(function(){
 
 function getProductsInfo(){
     console.log(productsInCart);
-    $.each(productsInCart, function(productId, quantity){
-        $.get({
-            url: `/api/productcard/${productId}/`,
-            dataType: 'json',
-            success: function(response){
-                infoProducts[response["product_id"]] = response; 
-                infoProducts[response["product_id"]]["quantity"] = quantity;
-                
-                tryPrinting();
-            },
-            error: function(error){
-                console.error("Error en el servicio de listar productos del carrito");
-                console.error(error);
-            }
+    if (cartLength() > 0)
+        $.each(productsInCart, function(productId, quantity){
+            $.get({
+                url: `/api/productcard/${productId}/`,
+                dataType: 'json',
+                success: function(response){
+                    infoProducts[response["product_id"]] = response; 
+                    infoProducts[response["product_id"]]["quantity"] = quantity;
+                    
+                    tryPrinting();
+                },
+                error: function(error){
+                    console.error("Error en el servicio de listar productos del carrito");
+                    console.error(error);
+                }
+            });
         });
-    });
+    else
+        printNoProductCard();
+}
+
+function printNoProductCard(){
+    emptyContainer();
+    calculateTotal();
+    var card = $("<div></div>");
+    card.addClass("product-item card");
+    card.text("No hay productos en su carrito.")
+
+    appendCard(card);
 }
 
 function printProducts(){
@@ -121,8 +134,6 @@ function emptyContainer(){
     container.empty();
 }
 
-
-
 // checkea que ya se tenga toda la informacion de los productos y si es asi, los imprime
 function tryPrinting(){ 
     var hasAll = true;
@@ -141,7 +152,10 @@ function removeProduct(id){
     RemoveFromCart(id);
     delete infoProducts[id];
     updateProductsInCart();
-    printProducts();
+    if (cartLength() > 0)
+        printProducts();
+    else
+        printNoProductCard();
 }
 
 function addEventsToCard(id){
@@ -163,4 +177,8 @@ function calculateTotal(){
 function updateProductsInCart(){
     productsInCart = GetCart();
     keys = Object.keys(productsInCart);
+}
+
+function cartLength(){
+    return Object.keys(productsInCart).length;
 }

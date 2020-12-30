@@ -3,7 +3,7 @@
 }
 
 #cart-products .product-image{
-	height: 3.5rem;
+	height: 5rem;
 }
 
 #cart-products .card{
@@ -28,8 +28,24 @@
 .product-item{
 	padding: 3px;
 	font-size: large;
+	margin-bottom: 0.5rem;
 }
 
-.product-item .ammount input{
+.product-item .quantity input{
 	max-width: 5rem;
+}
+
+.descuento{
+	color: #f00;
+}
+
+.removeProduct{
+	height: 2rem;
+	margin-right: 10px;
+}
+
+.nombre-producto{
+	white-space: nowrap; 
+	overflow: hidden;
+	text-overflow: ellipsis; 
 }

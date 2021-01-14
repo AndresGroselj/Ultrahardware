@@ -35,11 +35,15 @@ async function getProductsInfo(){
 }
 
 async function f(){
-    infoProducts = await Promise.all(cartKeys.map(k => {
-        return fetch(`http://localhost:8000/api/productcard/${k}/`);
+    productsInformation = await Promise.allSettled(cartKeys.map(async k => {
+        let response = await fetch(`http://localhost:8000/api/productcard/${k}/`);
+        var jsonData = await response.json()
+        return jsonData;
     }))
-    return infoProducts;
-  }
+    console.log("fetch ended");
+    console.log(productsInformation);
+    return productsInformation;
+}
 
 function printNoProductCard(){
     emptyContainer();

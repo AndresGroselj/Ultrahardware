@@ -9,40 +9,45 @@ $(document).ready(function(){
     getProductsInfo();
 });
  
-async function getProductsInfo(){
-    console.log(productsInCart);
-    if (cartKeys.length > 0)
-        //#region desastre
-        $.each(productsInCart, function(productId, quantity){
-            $.get({
-                url: `/api/productcard/${productId}/`,
-                dataType: 'json',
-                success: function(response){
-                    infoProducts[response["product_id"]] = response; 
-                    infoProducts[response["product_id"]]["quantity"] = quantity;
+// async function getProductsInfo(){
+//     console.log(productsInCart);
+//     if (cartKeys.length > 0)
+//         //#region desastre
+//         $.each(productsInCart, function(productId, quantity){
+//             $.get({
+//                 url: `/api/productcard/${productId}/`,
+//                 dataType: 'json',
+//                 success: function(response){
+//                     infoProducts[response["product_id"]] = response; 
+//                     infoProducts[response["product_id"]]["quantity"] = quantity;
                     
-                    tryPrinting();
-                },
-                error: function(error){
-                    console.error("Error en el servicio de listar productos del carrito");
-                    console.error(error);
-                }
-            });
-        });
-        //#endregion
-    else
-        printNoProductCard();
-}
+//                     tryPrinting();
+//                 },
+//                 error: function(error){
+//                     console.error("Error en el servicio de listar productos del carrito");
+//                     console.error(error);
+//                 }
+//             });
+//         });
+//         //#endregion
+//     else
+//         printNoProductCard();
+// }
 
-async function f(){
-    productsInformation = await Promise.allSettled(cartKeys.map(async k => {
+async function getProductsInfo(){
+    rawProductsData = await Promise.allSettled(cartKeys.map(async k => {
         let response = await fetch(`http://localhost:8000/api/productcard/${k}/`);
         var jsonData = await response.json()
         return jsonData;
     }))
-    console.log("fetch ended");
-    console.log(productsInformation);
-    return productsInformation;
+    cleanProductsData = rawProductsData.map(a => a.value)
+    var formatedData = {};
+    cleanProductsData.forEach(element => {
+        var elementId = element["product_id"];
+        formatedData[elementId] = element;
+        formatedData[elementId]["quantity"] = productsInCart[elementId];
+    });
+    return formatedData;
 }
 
 function printNoProductCard(){

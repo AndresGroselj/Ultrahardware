@@ -6,33 +6,14 @@ var infoProducts = {};
 $(document).ready(function(){
     updateProductsInCart();
     container = $("#cart-products");
-    getProductsInfo();
+    if (cartKeys.length > 0)
+        getProductsInfo().then(productData => {
+            infoProducts = productData;
+            printProducts();
+        });
+    else
+        printNoProductCard();
 });
- 
-// async function getProductsInfo(){
-//     console.log(productsInCart);
-//     if (cartKeys.length > 0)
-//         //#region desastre
-//         $.each(productsInCart, function(productId, quantity){
-//             $.get({
-//                 url: `/api/productcard/${productId}/`,
-//                 dataType: 'json',
-//                 success: function(response){
-//                     infoProducts[response["product_id"]] = response; 
-//                     infoProducts[response["product_id"]]["quantity"] = quantity;
-                    
-//                     tryPrinting();
-//                 },
-//                 error: function(error){
-//                     console.error("Error en el servicio de listar productos del carrito");
-//                     console.error(error);
-//                 }
-//             });
-//         });
-//         //#endregion
-//     else
-//         printNoProductCard();
-// }
 
 async function getProductsInfo(){
     rawProductsData = await Promise.allSettled(cartKeys.map(async k => {
@@ -77,20 +58,6 @@ function appendCard(card){
 
 function emptyContainer(){
     container.empty();
-}
-
-// checkea que ya se tenga toda la informacion de los productos y si es asi, los imprime
-function tryPrinting(){ 
-    var hasAll = true;
-    for (i = 0; i < cartKeys.length; i++){
-        if(!infoProducts.hasOwnProperty(cartKeys[i])){
-            hasAll = false;
-            break;
-        };
-    };
-    if (hasAll){
-        printProducts();
-    };
 }
 
 function removeProduct(id){

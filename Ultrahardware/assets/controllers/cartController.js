@@ -1,35 +1,34 @@
 var container = null;
 var productsInCart = {};
-var keys = [];
+var cartKeys = [];
 var infoProducts = {};
 
 $(document).ready(function(){
     updateProductsInCart();
     container = $("#cart-products");
-    getProductsInfo();
-});
-
-function getProductsInfo(){
-    console.log(productsInCart);
-    if (keys.length > 0)
-        $.each(productsInCart, function(productId, quantity){
-            $.get({
-                url: `/api/productcard/${productId}/`,
-                dataType: 'json',
-                success: function(response){
-                    infoProducts[response["product_id"]] = response; 
-                    infoProducts[response["product_id"]]["quantity"] = quantity;
-                    
-                    tryPrinting();
-                },
-                error: function(error){
-                    console.error("Error en el servicio de listar productos del carrito");
-                    console.error(error);
-                }
-            });
+    if (cartKeys.length > 0)
+        getProductsInfo().then(productData => {
+            infoProducts = productData;
+            printProducts();
         });
     else
         printNoProductCard();
+});
+
+async function getProductsInfo(){
+    rawProductsData = await Promise.allSettled(cartKeys.map(async k => {
+        let response = await fetch(`http://localhost:8000/api/productcard/${k}/`);
+        var jsonData = await response.json()
+        return jsonData;
+    }))
+    cleanProductsData = rawProductsData.map(a => a.value)
+    var formatedData = {};
+    cleanProductsData.forEach(element => {
+        var elementId = element["product_id"];
+        formatedData[elementId] = element;
+        formatedData[elementId]["quantity"] = productsInCart[elementId];
+    });
+    return formatedData;
 }
 
 function printNoProductCard(){
@@ -50,6 +49,70 @@ function printProducts(){
         appendCard(card);
         addEventsToCard(index);
     });
+    calculateTotal();
+}
+
+function appendCard(card){
+    container.append(card);
+}
+
+function emptyContainer(){
+    container.empty();
+}
+
+function removeProduct(id){
+    RemoveFromCart(id);
+    delete infoProducts[id];
+    updateProductsInCart();
+    if (cartKeys.length > 0)
+        printProducts();
+    else
+        printNoProductCard();
+}
+
+function addEventsToCard(id){
+    maxQuanity = $("#product-quantity-" + id).attr("max");
+
+    $("#removeProduct-" + id).click(function(){
+        console.log(`removing product [${id}] ${infoProducts[id]["nombre"]}`);
+        removeProduct(id)
+    });
+    $("#product-quantity-" + id).bind('keyup mouseup', function(){
+        var value = parseInt($("#product-quantity-" + id).val());
+        if (isNaN(value))
+            return;
+        if (infoProducts[id]["quantity"] == value)
+            return;
+        if (value > maxQuanity){
+            value = maxQuanity;
+            $("#product-quantity-" + id).val(maxQuanity)
+        }
+
+        updateProductQuantity(id, value);
+    });
+}
+
+function calculateTotal(){
+    var total = 0;
+    for (i = 0; i < cartKeys.length; i++){
+        var info = infoProducts[cartKeys[i]];
+        total += info["Price"] * info["quantity"];
+    };
+    $("#total").text(formatCurrency(total));
+}
+
+function updateProductsInCart(){
+    productsInCart = GetCart();
+    cartKeys = Object.keys(productsInCart);
+}
+
+function updateProductQuantity(id, quantity){
+    console.log(`changing quantity of [${id}] ${infoProducts[id]["nombre"]}`);
+    AddToCart(id, quantity);
+    updateProductsInCart();
+    infoProducts[id]["quantity"] = quantity; 
+
+    $("#product-total-" + id).text(formatCurrency(infoProducts[id]["Price"] * quantity))
     calculateTotal();
 }
 
@@ -124,82 +187,4 @@ function CreateProductCard(product){
     card.append(row);
 
     return card;
-}
-
-function appendCard(card){
-    container.append(card);
-}
-
-function emptyContainer(){
-    container.empty();
-}
-
-// checkea que ya se tenga toda la informacion de los productos y si es asi, los imprime
-function tryPrinting(){ 
-    var hasAll = true;
-    for (i = 0; i < keys.length; i++){
-        if(!infoProducts.hasOwnProperty(keys[i])){
-            hasAll = false;
-            break;
-        };
-    };
-    if (hasAll){
-        printProducts();
-    };
-}
-
-function removeProduct(id){
-    RemoveFromCart(id);
-    delete infoProducts[id];
-    updateProductsInCart();
-    if (keys.length > 0)
-        printProducts();
-    else
-        printNoProductCard();
-}
-
-function addEventsToCard(id){
-    maxQuanity = $("#product-quantity-" + id).attr("max");
-
-    $("#removeProduct-" + id).click(function(){
-        console.log(`removing product [${id}] ${infoProducts[id]["nombre"]}`);
-        removeProduct(id)
-    });
-    $("#product-quantity-" + id).bind('keyup mouseup', function(){
-        var value = parseInt($("#product-quantity-" + id).val());
-        if (isNaN(value))
-            return;
-        if (infoProducts[id]["quantity"] == value)
-            return;
-        if (value > maxQuanity){
-            value = maxQuanity;
-            $("#product-quantity-" + id).val(maxQuanity)
-        }
-
-        updateProductQuantity(id, value);
-    });
-}
-
-function calculateTotal(){
-    var total = 0;
-    for (i = 0; i < keys.length; i++){
-        var info = infoProducts[keys[i]];
-        total += info["Price"] * info["quantity"];
-    };
-    $("#total").text(formatCurrency(total));
-}
-
-function updateProductsInCart(){
-    productsInCart = GetCart();
-    keys = Object.keys(productsInCart);
-}
-
-function updateProductQuantity(id, quantity){
-    console.log(`changing quantity of [${id}] ${infoProducts[id]["nombre"]}`);
-    AddToCart(id, quantity);
-    updateProductsInCart();
-    infoProducts[id]["quantity"] = quantity; 
-
-    $("#product-total-" + id).text(formatCurrency(infoProducts[id]["Price"] * quantity))
-    calculateTotal();
 }
